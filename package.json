@@ -1,0 +1,29 @@
+{
+  "name": "bitonic",
+  "version": "1.0.0",
+  "description": "A student teacher school/classes/acadamic Management System ",
+  "main": "index.js",
+  "scripts": {
+    "test": "start./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suryaofficial7/bitonic7.git"
+  },
+  "keywords": [
+    "bitonic",
+    "trogrammer",
+    "tamil-programmer",
+    "suryask"
+  ],
+  "author": "Surya Sk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suryaofficial7/bitonic7/issues"
+  },
+  "homepage": "https://github.com/suryaofficial7/bitonic7#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}
