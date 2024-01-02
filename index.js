@@ -37,6 +37,12 @@ app.get("/login", (req, res) => {
 
 
 
+//? ===========================================================================================================
+// ! [ Teachers  ]
+app.get("/teacher/teacherHomepage", (req, res) => {
+  res.render("/teacher/teacherHomepage");
+});
+
 
 
 
@@ -51,16 +57,20 @@ app.get("/teacher/teacherLogin", (req, res) => {
   res.render("teacher/teacherLogin");
 });
 
-app.get("admin/adminLogin", (req, res) => {
+app.get("/admin/adminLogin", (req, res) => {
   res.render("admin/adminLogin");
 });
 
-app.get("sudoUser/sudoUserLogin", (req, res) => {
+app.get("/sudoUser/sudoUserLogin", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
 
 
-
+//? ===========================================================================================================
+// ! [Sudo User FIles :) ]
+app.get("/sudoUser", (req, res) => {
+  res.render("sudoUser/index");
+});
 
 
 
