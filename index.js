@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const hbs = require("handlebars");
+const hbs = require("hbs");
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -14,7 +14,7 @@ app.use(express.static(staticPath));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-
+hbs.registerPartials(path.join(__dirname, "/template/partials"));
 //? ===========================================================================================================
 
 //! [ The root Page ]
