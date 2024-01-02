@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const hbs = require("handlebars");
+const hbs = require("hbs");
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -10,12 +10,15 @@ const port = 8888;
 
 // !Express INIT:)
 const staticPath = path.join(__dirname, "/public");
+const partialsPath = path.join(__dirname, "/template/partials");
+
 
 
 app.use(express.static(staticPath));
 
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/template/views"));
 app.set("view engine", "hbs");
+hbs.registerPartials(partialsPath);
 
 //? ===========================================================================================================
 
