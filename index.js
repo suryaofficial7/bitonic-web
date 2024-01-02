@@ -90,5 +90,5 @@ app.get("/sudoUser", (req, res) => {
 //? ===========================================================================================================
 // ! [ Lising to port ]
 app.listen(port, () => {
-  console.log("Running Now .....");
+  console.log(`Running  in http://localhost:8888/`);
 });
