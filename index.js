@@ -41,6 +41,14 @@ app.get("/login", (req, res) => {
 });
 
 
+//? ===========================================================================================================
+// ! [ Students :) ]
+app.get("/student/studentHomepage", (req, res) => {
+  res.render("student/studentHomepage");
+});
+
+
+
 
 //? ===========================================================================================================
 // ! [ Teachers  ]
@@ -66,7 +74,7 @@ app.get("/admin/adminLogin", (req, res) => {
   res.render("admin/adminLogin");
 });
 
-app.get("/sudoUser/sudoUserLogin", (req, res) => {
+app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
 

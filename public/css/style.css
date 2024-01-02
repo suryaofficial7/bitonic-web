@@ -301,6 +301,10 @@ color: #000000 !important;
   background: #fff !important;
   border: 2px solid rgba(255, 67, 73, 0) ;
 }
+
+.code  {
+  font-family: monospace !important;
+}
 .box{
     padding: 15px;
     border-radius: 10px;
@@ -309,6 +313,8 @@ color: #000000 !important;
     text-align: center;
     /* box-shadow: 0 2px 4px rgb(0 0 0 / 15%); */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+
     border: 1px solid transparent;
     /* min-width: 100px; */
     transition: all ease 0.3s;
