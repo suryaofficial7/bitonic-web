@@ -10,6 +10,8 @@ const port = 8888;
 
 // !Express INIT:)
 const staticPath = path.join(__dirname, "/public");
+
+
 app.use(express.static(staticPath));
 
 app.set("views", path.join(__dirname, "views"));
@@ -21,18 +23,18 @@ app.set("view engine", "hbs");
 // ! [ I am Using Arrow Function ]
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("bitonic/index");
 });
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("bitonic/about");
 });
 
 app.get("/contact", (req, res) => {
-  res.render("contact");
+  res.render("bitonic/contact");
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("bitonic/login");
 });
 
 
@@ -40,7 +42,7 @@ app.get("/login", (req, res) => {
 //? ===========================================================================================================
 // ! [ Teachers  ]
 app.get("/teacher/teacherHomepage", (req, res) => {
-  res.render("/teacher/teacherHomepage");
+  res.render("teacher/teacherHomepage");
 });
 
 
