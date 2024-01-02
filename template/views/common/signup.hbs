@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/animation.css">
+    <!-- <link rel="stylesheet" href="/css/responsive.css"> -->
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+<link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
+    {{!-- <link rel="stylesheet" href="/css/style.css" /> --}}
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/animation.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Bitonic@XYZ | Register</title>
+  </head>
+  <body>
+
+
+    <form class="my-form box ani1">
+      <div class="login-welcome-row">
+        <a href="#" title="Logo">
+          <img src="../images/brand.png" alt="Logo" class="logo ani1" />
+        </a>
+
+        <h2>Application 🏫</h2>
+
+        <p>Please enter proper details!</p>
+      </div>
+
+
+    <div class="input_wrapper ani1">
+        <input
+          id="password"
+          type="text"
+          class="input_field"
+          placeholder="Enter Name as per Aadhar Card"
+          {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
+          pattern="^(?= .*[A-Za-z]) (7.*\d) [A-Za-z\d]{6,}$" --}}
+          required
+        />
+
+      </div>
+
+
+
+
+
+      <div class="input_wrapper ani1">
+        <input
+          type="email"
+          id="email"
+          class="input_field"
+          placeholder="Valid Email ID ex:xyz@xyz.com"
+          required
+        />
+        <!-- svg -->
+      </div>
+
+      <div class="input_wrapper ani1">
+        <input
+          id="password"
+          type="text"
+          class="input_field"
+          placeholder="Valid Contact No*"
+          {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
+          pattern="^(?= .*[A-Za-z]) (7.*\d) [A-Za-z\d]{6,}$" --}}
+          required
+        />
+
+
+
+</div>
+
+        <div >
+       
+
+        <select name="" id=""  class="select ani1" style="height: 40px; ">
+
+            <option value="null">Select Your Preferance</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">School/Clg/Classes</option>
+
+        </select>
+
+      </div>
+
+
+
+
+      </div>
+
+        <div class="input_wrapper select ani1 text-center" style="text-align: center ; color: red;font-size: 40px;">
+     <span id="capcha" style="text-decoration: line-through !important;">
+AS243f </span>   
+<span onclick="loadCapcha()" class="btn btn-primary clickable"> &#8634;</span>
+      </div>
+  <div class="input_wrapper ani1">
+        <input
+          id="password"
+          type="text"
+          class="input_field"
+          placeholder="Capcha"
+          {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
+          pattern="^(?= .*[A-Za-z]) (7.*\d) [A-Za-z\d]{6,}$" --}}
+          required
+        />
+
+      </div>
+      <button type="submit" class="my-form_button ani1">Apply Now</button>
+
+      <div class="socials-row ani1">
+        <a href="#"  title="Use Google">
+          Forgot Pwd*
+        </a>
+      </div>
+      <br>
+      
+      <div class="my-form actions">
+        <div class="my-form_row code ani1">
+            
+          <span>Don't have an account?</span>
+          <a href="#" class="link" title="Create Account">Sign Up</a>
+        </div>
+      </div>
+    </form>
+
+
+    <script src="script.js"></script>
+
+    <script>
+
+let captcha;
+let alphabets = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890";
+console.log(alphabets.length);
+
+
+        function loadCapcha(){
+let first = alphabets[Math.floor(Math.random() * alphabets.length)];
+let second = Math.floor(Math.random() * 10);
+let third = Math.floor(Math.random() * 10);
+let fourth = alphabets[Math.floor(Math.random() * alphabets.length)];
+let fifth = alphabets[Math.floor(Math.random() * alphabets.length)];
+let sixth = Math.floor(Math.random() * 10);
+captcha = first.toString()+second.toString()+third.toString()+fourth.toString()+fifth.toString()+sixth.toString();
+document.getElementById('capcha').innerHTML=captcha;
+        }
+
+        loadCapcha();
+    </script>
+  </body>
+</html>

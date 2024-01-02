@@ -78,11 +78,34 @@ app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
 
+//? ===========================================================================================================
+// ! [ LOGOUTS :(  ]
+app.get("/student/studentLogout", (req, res) => {
+  res.render("student/studentLogout");
+});
+
+app.get("/teacher/teacherLogout", (req, res) => {
+  res.render("teacher/teacherLogout");
+});
+
+app.get("/admin/adminLogout", (req, res) => {
+  res.render("admin/adminLogout");
+});
+app.get("/sudoUser/sudoUserLogout", (req, res) => {
+  res.render("sudoUser/sudoUserLogout");
+});
 
 //? ===========================================================================================================
-// ! [Sudo User FIles :) ]
+// ! [SudoUser FIles :) ]
 app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/index");
+});
+
+
+//? ===========================================================================================================
+// ! COMMON Routes :) ]
+app.get("/common/signup", (req, res) => {
+  res.render("common/signup");
 });
 
 
