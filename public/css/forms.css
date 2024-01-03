@@ -231,7 +231,10 @@ socials-row {
 }
 
 .input_field::placeholder {
-    /* color: transparent; */
+    color: transparent;
+}
+.place::placeholder {
+    color: black !important;
 }
 
 .input_label {
