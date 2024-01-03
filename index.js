@@ -1,10 +1,18 @@
 const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
+const uuid = require("uuid");
+const dotenv = require("dotenv");
+const mysql = require('mysql');
+const {conn} = require('./database/db');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
 const port = 8888;
+
+
 
 //? ===========================================================================================================
 
@@ -15,7 +23,9 @@ const partialsPath = path.join(__dirname, "/template/partials");
 
 
 app.use(express.static(staticPath));
-
+app.use(bodyParser.urlencoded({ 
+  extended:true
+})); 
 app.set("views", path.join(__dirname, "/template/views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(partialsPath);
@@ -109,9 +119,31 @@ app.get("/common/signup", (req, res) => {
 });
 
 
+//? ===========================================================================================================
+// ! [ auth  ]
+app.post("/auth/student", (req, res) => {
+  const email =req.body.email;
+  const pwd =req.body.pwd;
+conn.query(`select * from student where email='${email}' or username='${email}' and pwd='${pwd}'`,function(err,result1){
+  if (err) throw err;
+  console.log(result1);
+  res.redirect("../student/studentHomepage");
+})
+});
+
+
+
+
 
 //? ===========================================================================================================
 // ! [ Lising to port ]
 app.listen(port, () => {
+
+  // console.log("bitonic@stu-"+uuid.v4())
+  const hash = bcrypt.hashSync("myPlaintextPassword", 10);
+  const check = bcrypt.compareSync("myPlaintextPassword","$2b$10$BIFYfa5caeNfXB6.OpJc6O1At.F2i.TJiWJtJ/ytrNSjAQdGFZ5Te");
+  console.log(hash);
+  console.log(check);
+
   console.log(`Running  in http://localhost:8888/`);
 });
