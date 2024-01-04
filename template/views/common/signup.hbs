@@ -38,9 +38,13 @@
     <title>Bitonic@XYZ | Register</title>
   </head>
   <body>
+    <style>
+      *{
+        overflow: visible;
+      }
+    </style>
 
-
-    <form class="my-form box ani1">
+    <form class="my-form box ani1" method="get" action="../auth/signup">
       <div class="login-welcome-row">
         <a href="#" title="Logo">
           <img src="../images/brand.png" alt="Logo" class="logo ani1" />
@@ -50,12 +54,16 @@
 
         <p>Please enter proper details!</p>
       </div>
-
+      <center>
+<p style="font-weight: bold;color: red;">{{#if mess}}{{mess}}{{/if}}</p>
+<p style="font-weight: bold;color: rgb(0, 179, 21);">{{#if succ}}{{succ}}{{/if}} <a style="text-decoration-line: underline;" href="../../">Go Back</a></p>
+</center>
 
     <div class="input_wrapper ani1">
         <input
           id="password"
           type="text"
+          name="fullName"
           class="input_field place"
           placeholder="Enter Name as per Aadhar Card"
           {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
@@ -73,6 +81,7 @@
         <input
           type="email"
           id="email"
+          name="email"
           class="input_field place"
           placeholder="Valid Email ID ex:xyz@xyz.com"
           required
@@ -86,6 +95,8 @@
           type="text"
           class="input_field place"
           placeholder="Valid Contact No*"
+          name="mob"
+
           {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
           pattern="^(?= .*[A-Za-z]) (7.*\d) [A-Za-z\d]{6,}$" --}}
           required
@@ -98,12 +109,11 @@
         <div >
        
 
-        <select name="" id=""  class="select ani1" style="height: 40px; ">
+        <select name="userType" id=""  class="select ani1" style="height: 40px; ">
 
             <option value="null">Select Your Preferance</option>
             <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-            <option value="admin">School/Clg/Classes</option>
+            
 
         </select>
 
@@ -125,12 +135,14 @@ AS243f </span>
           type="text"
           class="input_field place"
           placeholder="Capcha"
+          name="capcha"
           {{!-- title="Minimum 6 characters at least 1 Alphabet and 1 Number"
           pattern="^(?= .*[A-Za-z]) (7.*\d) [A-Za-z\d]{6,}$" --}}
           required
         />
 
       </div>
+      
       <button type="submit" class="my-form_button ani1">Apply Now</button>
 
     

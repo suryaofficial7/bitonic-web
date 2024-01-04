@@ -36,3 +36,32 @@
 .slide {
   animation: scaling 0.7s ease-in-out;
 }
+
+
+.alert{
+  border: 2px solid orange;
+  position: absolute !important;
+  top: 0;
+  z-index: 12;
+  background: rgba( 255, 255, 255, 0.05 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 1.5px );
+-webkit-backdrop-filter: blur( 1.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+width: 80%;
+margin: auto;
+padding: 15px;
+border-radius: 10px;
+
+margin: 10px;
+text-align: center;
+/* box-shadow: 0 2px 4px rgb(0 0 0 / 15%); */
+box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+/* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+
+border: 1px solid transparent;
+/* min-width: 100px; */
+transition: all ease 0.3s;
+border: 2px solid rgba(255, 67, 73, 0) ;
+}

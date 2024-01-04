@@ -8,6 +8,9 @@ const { conn } = require("./database/db");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
+const alert = require("alert");
+const notifier = require("node-notifier");
+const { fork } = require("child_process");
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -18,7 +21,9 @@ const port = 8888;
 // !Express INIT:)
 const staticPath = path.join(__dirname, "/public");
 const partialsPath = path.join(__dirname, "/template/partials");
-
+// app.use(express.urlencoded()); // Parse URL-encoded bodies using query-string library
+// or
+// app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(staticPath));
 app.use(
@@ -31,6 +36,7 @@ app.set("view engine", "hbs");
 hbs.registerPartials(partialsPath);
 
 //? ===========================================================================================================
+// window.print();
 
 //! [ The root Page ]
 // ! [ I am Using Arrow Function ]
@@ -51,7 +57,7 @@ app.get("/login", (req, res) => {
 });
 
 //? ===========================================================================================================
-// ! [ Students :) ]
+// ! [ STUDENTS :) ]
 app.get("/student/studentHomepage", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
 
@@ -61,6 +67,74 @@ app.get("/student/studentHomepage", (req, res) => {
   } else {
     res.render("student/studentHomepage");
 
+    // res.redirect("student/d");
+  }
+});
+
+
+app.get("/student/profile", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/studentProfile");
+
+    // res.redirect("student/d");
+  }
+});
+
+
+app.get("/student/upload", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/files");
+
+    // res.redirect("student/d");
+  }
+});
+
+app.get("/student/notification", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/etc");
+
+    // res.redirect("student/d");
+  }
+});
+
+app.get("/student/report", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/studentData");
+
+    // res.redirect("student/d");
+  }
+});
+
+
+
+app.get("/student/sms", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/studentSms");
 
     // res.redirect("student/d");
   }
@@ -75,7 +149,13 @@ app.get("/teacher/teacherHomepage", (req, res) => {
 //? ===========================================================================================================
 // ! [ LOGINS  ]
 app.get("/student/studentLogin", (req, res) => {
+
+if(req.cookies.bitonicID==null){
   res.render("student/studentLogin");
+}
+else{
+res.redirect("/student/studentHomepage");
+}
 });
 
 app.get("/teacher/teacherLogin", (req, res) => {
@@ -151,11 +231,41 @@ app.post("/auth/student", (req, res) => {
   );
 });
 
+app.get("/auth/signup", (req, res) => {
+  const val = req.query;
+  const name = req.query.fullName;
+  const email = req.query.email;
+  const mob = req.query.mob;
+  const userType = req.query.userType;
+  const queueID = uuid.v4().substring(0, 7);
 
 
+  conn.query(`select email from queue where email='${email}'`,(err3,result3)=>{
 
+  if(result3[0]==null){
 
+  conn.query(
+    `insert into queue(name,email,contact,userType,timey,queueID) values('${name}','${email}','${mob}','${userType}',CURRENT_TIMESTAMP,'${queueID}')`,
+    (err2, result2) => {
+      if (err2) {
+        console.log("error in inserting Queue ID");
+        console.log(err2);
+      } else {
+        console.log("Entered successfully >>>");
+        // console.log(val);
 
+        res.render("common/signup",{succ:"Application Submitted Successfully"});
+
+      }
+    }
+  );
+}
+else{
+  res.render("common/signup",{mess:"Email Allready Exist*"});
+}
+})
+
+});
 
 //? ===========================================================================================================
 // ! [ Lising to port ]
