@@ -52,6 +52,9 @@
 
         <label for="password" class="input_label"> Password: </label>
       </div>
+{{#if mess}}
+<p style="color: red;"><b>{{mess}} *</b></p>
+{{/if}}
 
       <button type="submit" class="my-form_button ani1">Login</button>
 
@@ -66,7 +69,7 @@
         <div class="my-form_row code ani1">
             
           <span>Don't have an account?</span>
-          <a href="#" class="link" title="Create Account">Sign Up</a>
+          <a href="../common/signup" class="link" title="Create Account">Sign Up</a>
         </div>
       </div>
     </form>
