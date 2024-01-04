@@ -1,7 +1,5 @@
 # Node.js Express Application   BITONIC-WEB
-
 ## 1. Dependencies and Modules:
-
 ### `require` Statements:
 - `path`: Handling file paths.
 - `express`: Web application framework for Node.js.
