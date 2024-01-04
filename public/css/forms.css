@@ -207,13 +207,34 @@ socials-row {
     vertical-align: middle;
     font-family: monospace !important;
     padding-bottom: 0.7rem;
-    border-bottom: 3px solid var(--secondary);
+    border-bottom: 2px solid var(--secondary);
+    background: transparent;
+    /* transition: border-color 0.2s; */
+}
+.select {
+    font-size: 1rem;
+    color: var(--text);
+    padding: 6px 0px;
+    padding-right: 32px;
+    padding-bottom: 8px;
+    line-height: 2rem;
+    height: 2rem;
+    outline: 0px;
+    /* border: 0px; */
+    width: 100%;
+    vertical-align: middle;
+    font-family: monospace !important;
+    padding-bottom: 0.7rem;
+    /* border-bottom: 3px solid var(--secondary); */
     background: transparent;
     transition: border-color 0.2s;
 }
 
 .input_field::placeholder {
     color: transparent;
+}
+.place::placeholder {
+    color: black !important;
 }
 
 .input_label {
@@ -244,11 +265,11 @@ socials-row {
 }
 
 .input_field:focus {
-    border-bottom: 3px solid var(--primary);
+    /* border-bottom: 3px solid var(--primary); */
 }
 
 .input_field:focus~svg {
-    stroke: var(--primary);
+    /* stroke: var(--primary); */
 }
 
 .input_icon {
