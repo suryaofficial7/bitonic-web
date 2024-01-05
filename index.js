@@ -42,7 +42,17 @@ hbs.registerPartials(partialsPath);
 // ! [ I am Using Arrow Function ]
 
 app.get("/", (req, res) => {
+
+  let err = req.query.err;
+  let mess = req.query.mess;
+  let succ = req.query.succ;
+if(err || mess || succ != null){
+  res.render("bitonic/index",{data:"yes",err:err,mess:mess,succ:succ});
+}
+else{
   res.render("bitonic/index");
+
+}
 });
 app.get("/about", (req, res) => {
   res.render("bitonic/about");
@@ -60,17 +70,34 @@ app.get("/login", (req, res) => {
 // ! [ STUDENTS :) ]
 app.get("/student/studentHomepage", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
+  let studentID = req.cookies["studentID"];
 
-  if (bitonicID == null) {
-    // res.send("bad");
-    res.redirect("../../login");
-  } else {
-    res.render("student/studentHomepage");
+ 
+      if (bitonicID == null || studentID==null) {
+        // res.send("bad");
+        res.redirect("../../login");
+      } else {
 
-    // res.redirect("student/d");
-  }
+        conn.query(
+          `select * from student where bitonicID='${bitonicID}' and studentID='${studentID}'`,
+          function (err4, result4) {
+
+
+            if(result4[0]==null){
+              res.redirect("../../?err=xjv");
+            }
+            else{
+            console.log("___________________________________1");
+            console.log(result4);
+
+        res.render("student/studentHomepage",{result4:result4});
+      }
+      }
+      );
+        // res.redirect("student/d");
+      }
+    
 });
-
 
 app.get("/student/profile", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
@@ -84,7 +111,6 @@ app.get("/student/profile", (req, res) => {
     // res.redirect("student/d");
   }
 });
-
 
 app.get("/student/upload", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
@@ -125,8 +151,6 @@ app.get("/student/report", (req, res) => {
   }
 });
 
-
-
 app.get("/student/sms", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
 
@@ -162,13 +186,11 @@ app.get("/teacher/teacherHomepage", (req, res) => {
 //? ===========================================================================================================
 // ! [ LOGINS  ]
 app.get("/student/studentLogin", (req, res) => {
-
-if(req.cookies.bitonicID==null){
-  res.render("student/studentLogin");
-}
-else{
-res.redirect("/student/studentHomepage");
-}
+  if (req.cookies.bitonicID == null) {
+    res.render("student/studentLogin");
+  } else {
+    res.redirect("/student/studentHomepage");
+  }
 });
 
 app.get("/teacher/teacherLogin", (req, res) => {
@@ -238,6 +260,8 @@ app.post("/auth/student", (req, res) => {
         } else {
           console.log(result1);
           res.cookie("bitonicID", result1[0].bitonicID);
+          res.cookie("studentID", result1[0].studentID);
+
           res.redirect("../student/studentHomepage");
         }
       }
@@ -253,32 +277,31 @@ app.get("/auth/signup", (req, res) => {
   const userType = req.query.userType;
   const queueID = uuid.v4().substring(0, 7);
 
-
-  conn.query(`select email from queue where email='${email}'`,(err3,result3)=>{
-
-  if(result3[0]==null){
-
   conn.query(
-    `insert into queue(name,email,contact,userType,timey,queueID) values('${name}','${email}','${mob}','student',CURRENT_TIMESTAMP,'${queueID}')`,
-    (err2, result2) => {
-      if (err2) {
-        console.log("error in inserting Queue ID");
-        console.log(err2);
+    `select email from queue where email='${email}'`,
+    (err3, result3) => {
+      if (result3[0] == null) {
+        conn.query(
+          `insert into queue(name,email,contact,userType,timey,queueID) values('${name}','${email}','${mob}','student',CURRENT_TIMESTAMP,'${queueID}')`,
+          (err2, result2) => {
+            if (err2) {
+              console.log("error in inserting Queue ID");
+              console.log(err2);
+            } else {
+              console.log("Entered successfully >>>");
+              // console.log(val);
+
+              res.render("common/signup", {
+                succ: "Application Submitted Successfully",
+              });
+            }
+          }
+        );
       } else {
-        console.log("Entered successfully >>>");
-        // console.log(val);
-
-        res.render("common/signup",{succ:"Application Submitted Successfully"});
-
+        res.render("common/signup", { mess: "Email Allready Exist*" });
       }
     }
   );
-}
-else{
-  res.render("common/signup",{mess:"Email Allready Exist*"});
-}
-})
-
 });
 
 //? ===========================================================================================================

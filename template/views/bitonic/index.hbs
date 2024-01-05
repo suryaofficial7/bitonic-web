@@ -20,6 +20,37 @@
     <!--? NAV BAR  -->
     {{>nav}}
 
+  {{#if data}}
+    <div id="block" class="alert" style="position: absolute; width: 100% !important; height: 100% !important; top: 0;margin: 0px;padding: 0; justify-content: center !important; ">
+
+<div  class="my-form" style="justify-content: center;margin-top: 0px; border-radius: 0%; position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); " >
+
+<h1>Bitonic Says</h1>
+
+{{#if err}}
+<p class="text-danger"> 
+  {{err}} ✅</p>
+  {{/if}}
+{{#if succ}}
+<p class="text-success"> 
+  {{succ}} ✅</p>
+  {{/if}}
+{{#if mess}}
+<p class="text-primary"> 
+  {{mess}} ✅</p>
+  {{/if}}
+
+
+<button onclick="work()" class="btn btn-primary">Okay</button>
+<br>
+</div>
+
+    </div>
+
+    {{/if}}
 <hr class="hr">
 
 <!--? CENTER IDEA -->
@@ -60,12 +91,17 @@
 
 {{>footer}}
 
+
+</body>
 <script>
         
+function work(){
+document.getElementById("block").style.display="none";
+}
+
     function oo() {
       document.getElementById("loading").style.display="none";
     }
 
   </script>
-</body>
 </html>
