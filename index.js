@@ -50,6 +50,7 @@ if(err || mess || succ != null){
   res.render("bitonic/index",{data:"yes",err:err,mess:mess,succ:succ});
 }
 else{
+  
   res.render("bitonic/index");
 
 }
@@ -84,13 +85,13 @@ app.get("/student/studentHomepage", (req, res) => {
 
 
             if(result4[0]==null){
-              res.redirect("../../?err=xjv");
+              res.redirect("../../");
             }
             else{
             console.log("___________________________________1");
             console.log(result4);
 
-        res.render("student/studentHomepage",{result4:result4});
+        res.render("student/studentHomepage",{result4:result4[0]});
       }
       }
       );
@@ -186,11 +187,9 @@ app.get("/teacher/teacherHomepage", (req, res) => {
 //? ===========================================================================================================
 // ! [ LOGINS  ]
 app.get("/student/studentLogin", (req, res) => {
-  if (req.cookies.bitonicID == null) {
+
     res.render("student/studentLogin");
-  } else {
-    res.redirect("/student/studentHomepage");
-  }
+  
 });
 
 app.get("/teacher/teacherLogin", (req, res) => {
@@ -205,15 +204,26 @@ app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
 
+app.get("/bitonic/teacherLoginOption", (req, res) => {
+  res.render("bitonic/teacherLoginOption");
+});
+app.get("/bitonic/studentLoginOption", (req, res) => {
+  res.render("bitonic/studentLoginOption");
+});
 //? ===========================================================================================================
 // ! [ LOGOUTS :(  ]
 app.get("/student/logout", (req, res) => {
   res.clearCookie("bitonicID");
-  res.redirect("../../");
+  res.clearCookie("studentID");
+
+  res.redirect("../../?err=logged out succesfully");
 });
 
-app.get("/teacher/teacherLogout", (req, res) => {
-  res.render("teacher/teacherLogout");
+app.get("/teacher/logout", (req, res) => {
+  res.clearCookie("bitonicID");
+  res.clearCookie("teacherID");
+
+  res.redirect("../../?err=logged out succesfully");
 });
 
 app.get("/admin/adminLogout", (req, res) => {
@@ -263,6 +273,37 @@ app.post("/auth/student", (req, res) => {
           res.cookie("studentID", result1[0].studentID);
 
           res.redirect("../student/studentHomepage");
+        }
+      }
+    }
+  );
+});
+
+//?! ========================================================TEACHER AUTH0===============================
+app.post("/auth/teacher", (req, res) => {
+  const email = req.body.email;
+  const pwd = req.body.pwd;
+
+  conn.query(
+    `select * from teacher where email='${email}' or username='${email}'`,
+    async function (err, result1) {
+      if (err) throw err;
+      if (result1[0] == null) {
+        console.log("No Accout Found!");
+        res.render("teacher/teacherLogin", { mess: "No accout Found !" });
+      } else {
+        let a = await bcrypt.compare(pwd, result1[0].pwd);
+        console.log(a);
+
+        if (a == false) {
+          console.log("No Accout Found!");
+          res.render("teacher/teacherLogin", { mess: "Wrong  password!" });
+        } else {
+          console.log(result1);
+          res.cookie("bitonicID", result1[0].bitonicID);
+          res.cookie("teacherID", result1[0].teacherID);
+
+          res.redirect("../teacher/teacherHomepage");
         }
       }
     }

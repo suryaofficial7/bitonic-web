@@ -15,7 +15,7 @@
 <style>
   
 </style>
-<body>
+<body >
 
     <!--? NAV BAR  -->
     {{>nav}}
@@ -95,13 +95,24 @@
 </body>
 <script>
         
+
+        var delete_cookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 function work(){
 document.getElementById("block").style.display="none";
+delete_cookie("studentID");
+delete_cookie("bitonicID");
+
+
+window.location.href = "/";
 }
 
     function oo() {
       document.getElementById("loading").style.display="none";
     }
+
+
 
   </script>
 </html>

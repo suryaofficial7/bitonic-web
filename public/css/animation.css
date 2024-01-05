@@ -1,27 +1,27 @@
 /* ONLY FOR ANIMATION PURPOSE */
 
 .ani {
-  animation: scaling 0.7s ease-in-out;
+  animation: scaling 0.4s ease-in-out;
 }
 
 .ani1 {
-  animation: scaling 1s ease-in-out;
+  animation: scaling 0.7s ease-in-out;
 }
 
 .ani2 {
-  animation: scaling 1.3s ease-in-out;
+  animation: scaling 1s ease-in-out;
 }
 
 .ani3 {
-  animation: scaling 1.6s ease-in-out;
+  animation: scaling 1.2s ease-in-out;
 }
 
 .ani4 {
-  animation: scaling 1.9s ease-in-out;
+  animation: scaling 1.5s ease-in-out;
 }
 
 .ani5 {
-  animation: scaling 2.1s ease-in-out;
+  animation: scaling 2s ease-in-out;
 }
 @keyframes scaling {
   0% {

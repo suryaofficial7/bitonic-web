@@ -5,6 +5,8 @@
 /* #ff4a00 */
 /* #c3dfda */
 
+
+
 /*! FONT "syne mono" */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Syne+Mono&display=swap');
 *{
@@ -30,6 +32,10 @@ list-style-type: none;
   --violet:#8e2de2;
   }
 
+  .gradient-background {
+    background: black !important;
+    color: rgb(255, 255, 255) !important;
+  }
 
 
 .d-flex-computer{
