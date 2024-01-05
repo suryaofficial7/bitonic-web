@@ -223,7 +223,7 @@ socials-row {
     /* border: 0px; */
     width: 100%;
     vertical-align: middle;
-    font-family: monospace !important;
+    font-family: 'Courier New', Courier, monospace !important;
     padding-bottom: 0.7rem;
     /* border-bottom: 3px solid var(--secondary); */
     background: transparent;
@@ -234,7 +234,7 @@ socials-row {
     color: transparent;
 }
 .place::placeholder {
-    color: black !important;
+    color: rgba(78, 75, 75, 0.696) !important;
 }
 
 .input_label {

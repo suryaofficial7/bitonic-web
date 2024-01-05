@@ -140,6 +140,19 @@ app.get("/student/sms", (req, res) => {
   }
 });
 
+app.get("/student/activate", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/activate");
+
+    // res.redirect("student/d");
+  }
+});
+
 //? ===========================================================================================================
 // ! [ Teachers  ]
 app.get("/teacher/teacherHomepage", (req, res) => {
@@ -172,8 +185,9 @@ app.get("/sudoUser", (req, res) => {
 
 //? ===========================================================================================================
 // ! [ LOGOUTS :(  ]
-app.get("/student/studentLogout", (req, res) => {
-  res.render("student/studentLogout");
+app.get("/student/logout", (req, res) => {
+  res.clearCookie("bitonicID");
+  res.redirect("../../");
 });
 
 app.get("/teacher/teacherLogout", (req, res) => {
@@ -245,7 +259,7 @@ app.get("/auth/signup", (req, res) => {
   if(result3[0]==null){
 
   conn.query(
-    `insert into queue(name,email,contact,userType,timey,queueID) values('${name}','${email}','${mob}','${userType}',CURRENT_TIMESTAMP,'${queueID}')`,
+    `insert into queue(name,email,contact,userType,timey,queueID) values('${name}','${email}','${mob}','student',CURRENT_TIMESTAMP,'${queueID}')`,
     (err2, result2) => {
       if (err2) {
         console.log("error in inserting Queue ID");
