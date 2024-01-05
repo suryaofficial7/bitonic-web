@@ -19,111 +19,12 @@
 </style>
 <body>
     <!--? NAV BAR  -->
-    <nav class="only-Mob container m-0 p-0 text-center justify-content-center ani">
-
-    
-      <ul class="w-100 d-flex m-0 p-0" style="padding-left: 30px !important;" >
-        <li> 
-            <img src="/images/brand.png" height="70px" width="70px" alt="" id="brand">
-        </li>
-        <li class="mt-15" style="font-size: 25px; color: #000000;font-weight: 500;">
-            Bitonic
-        </li>
-        
-      </ul>  
-</nav>
-<hr class="hr">
-
-
-<nav class="container only-Mob ani">
-
-  <ul class="justify-content-center container d-flex m-0 p-0 flex-wrap">
-    <li class="m-3">       <a href="teacher/progile">          <i  class="text-dark fa-solid fa-user"></i>             </a></li>
-    <li class="m-3">       <a href="teacher/addAttemdamce">     <i  class="text-dark fa-solid fa-plus"></i>            </a></li>
-    <li class="m-3">       <a href="teacher/upload">          <i  class="text-dark fa-solid fa-cloud-arrow-up"></i>              </a></li>
-    <li class="m-3">       <a href="teacher/history">          <i  class="text-dark fa-solid fa-clock-rotate-left"></i>             </a></li>
-    <li class="m-3">       <a href="teacher/notification">     <i  class="text-dark fa-solid fa-comment-sms"></i>             </a></li>
-    <li class="m-3">       <a href="teacher/logout">           <i class="text-dark fa-solid fa-arrow-right-from-bracket"></i>            </a></li>
-
-
-  </ul>
-</nav>
-
-
-
-
-
-
-<!--? NAV BAR  -->
-    <nav class="navbar w-100 m-displayNone ani">
-
-<ul class="w-100 nav-ul ani">
-
-    <li class="w-20">
-        <div>
-              <ul>
-                <li> 
-                    <img src="/images/brand.png" height="70px" width="70px" alt="" id="brand">
-                </li>
-                <li class="mt-15" style="font-size: 25px; color: #000000;font-weight: 500;">
-                    Bitonic
-                </li>
-              </ul>  
-        </div>
-    </li>
-
-
-    <li class="w-50 m-displayNone">
-        <div>
-              <ul class="w-100">
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;">
-                  <a href="teacher/profile">                                      
-                  <button class="btn">Profile</button>
-                </a>
-              </li>
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;">
-                  <a href="teacher/addAttendance">                                      
-                  <button class="btn">Add Attendance</button>
-                </a>
-              </li>
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;">
-                  <a href="teacher/upload">                                      
-                  <button class="btn">Upload</button>
-                </a>
-              </li>
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;">
-                  <a href="teacher/history">                                      
-                  <button class="btn">History</button>
-                </a>
-              </li>
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;">
-                  <a href="teacher/notification">                                      
-                  <button class="btn">SMS</button>
-                </a>
-              </li>
-
-              </ul>  
-        </div>
-    </li>
-
-
-    <li class="w-20">
-        <div >
-              <ul>
-                <li class="mt-15" style="margin-left: 5px;margin-right: 5px;"><button class="btn"><i class="fa-solid fa-right-from-bracket fa-flip p-1" style="color: #e14a00;"></i>Logout</button></li>
-
-              </ul>  
-        </div>
-    </li>
-</ul>
-
-    </nav>
-
-<hr class="hr">
+   {{>teacherNav}}
 
 <!--? CENTER IDEA -->
 
 
+{{#if result4}}
 
 <nav class="navbar w-100 container ani1">
 
@@ -132,13 +33,13 @@
             <div class="w-100 d-flex text-center align-content-center justify-content-center">
                   
                     <li > 
-<img src="https://media.licdn.com/dms/image/C5603AQHkH8b0pfYzGQ/profile-displayphoto-shrink_400_400/0/1583018123451?e=2147483647&v=beta&t=-3DYZfweFQ7MeFQnfzypePwo-x1t0FsRZVJt8I4aRpI" height="50px" class="circle"  width="50px" alt="profile" >
+<img src="{{result4.img}}" height="50px" class="circle"  width="50px" alt="profile" >
 
 
                         <!-- <img src="brand.png" height="70px" width="70px" alt="" id="brand"> -->
                     </li>
-                    <li class="m-2 pl-3 font-bold w-auto" >
-Welcome Dani Daniels
+                    <li class="m-2 pl-3 font-bold w-auto" >Welcome
+{{result4.teacherName}}
                     </li>
                   
             </div>
@@ -174,75 +75,17 @@ Welcome Dani Daniels
   <hr class="hr">
 <div class="container d-flex-computer flex-wrap justify-content-center contain ">
 
-
-  <div class="box w-20 ani2">teacher Name<hr><b>DANI DANIELS</b></div>
-<div class="box w-20 ani2">teacher OF<hr><b>TYBSC IT</b></div>
-<div class="box w-20 ani2">Total Attandance<hr><b>95.00%</b></div>
-<div class="box w-20 ani2" >teacher ID<hr><b><span class="code" >bitonic@stu-67VnMs</span></b></div>
-
-
-
+      <div class="box w-20 ani2">Teacher Name<hr /><b style="text-transform: uppercase;">{{result4.teacherName}}</b></div>
+      <div class="box w-20 ani2">Teacher OF<hr /><b style="text-transform: uppercase;">{{result4.teacherOf}}</b></div>
+      <div class="box w-20 ani2">Total Attandance<hr /><b>95.00%</b></div>
+      <div class="box w-20 ani2">Teacher ID<hr /><b><span class="code">{{result4.teacherID}}</span></b></div>
+{{/if}}
 </div>
 
 
 <!--? FOOTER -->
 
-<br>
-<footer class="site-footer footer-box ani3">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h5>About</h5>
-          <p class="text-justify"><b class="theme-color">BITONIC</b> is platform where Any school or classes can login in and use our service and fees payment option and attendance there there ia teacher , teacher and institution login page option.There is a 1 month free trial option.</p>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-          <ul><h6>Categories</h6></ul>
-          <ul class="footer-links">
-            <li ><a class="theme-color"  href="http://scanfcode.com/category/c-language/">teachers login</a></li>
-            <li><a  class="theme-color" href="http://scanfcode.com/category/front-end-development/">Teacher login</a></li>
-            <li><a  class="theme-color" href="http://scanfcode.com/category/back-end-development/">School login</a></li>
-            <li><a  class="theme-color" href="http://scanfcode.com/category/java-programming-language/">FAQ</a></li>
-            <li><a  class="theme-color" href="http://scanfcode.com/category/android/">Chat</a></li>
-          </ul>
-        </div>
-
-        <div class="col-xs-6 col-md-3">
-        <ul><h6 >Quick Links</h6></ul>
-          <ul class="footer-links">
-            <li><a class="theme-color" href="http://scanfcode.com/about/">About Us</a></li>
-            <li><a class="theme-color" href="http://scanfcode.com/contact/">Contact Us</a></li>
-            <li><a class="theme-color" href="http://scanfcode.com/contribute-at-scanfcode/">Contributes</a></li>
-            <li><a class="theme-color" href="http://scanfcode.com/privacy-policy/">Privacy & Policy</a></li>
-            <li><a class="theme-color" href="http://scanfcode.com/sitemap/">Blog</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr>
-    </div>
-    <div class="container">
-      <br>
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2023-24 All Rights Reserved by 
-       <a class="theme-color" href="#brand">BITONIC</a>.
-          </p>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="d-flex mx-auto w-100">
-            <li><a class="m-3" href="#"><img src="/images/linkedin.png"   height="30px"  width="30px" alt="">   </a></li>   
-            <li><a class="m-3" href="#"> <img src="/images/whatsapp.png"  height="30px"  width="30px" alt="">  </a></li>   
-            <li><a class="m-3" href="#"><img src="/images/youtube (1).png"height="30px"  width="30px" alt=""> </a></li>   
-            <li><a class="m-3" href="#"><img src="/images/github.png"     height="30px"  width="30px" alt="">    </a></li>      
-            <li><a class="m-3" href="#"><img src="/images/twitter.png"    height="30px"  width="30px" alt="">   </a></li>      
-
-          </ul>
-        </div>
-      </div>
-    </div>
-    <br><br><br>
-</footer>
+{{>footer}}
 
 <script>
         

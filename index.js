@@ -38,6 +38,25 @@ hbs.registerPartials(partialsPath);
 //? ===========================================================================================================
 // window.print();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //! [ The root Page ]
 // ! [ I am Using Arrow Function ]
 
@@ -66,6 +85,24 @@ app.get("/contact", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("bitonic/login");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //? ===========================================================================================================
 // ! [ STUDENTS :) ]
@@ -178,22 +215,105 @@ app.get("/student/activate", (req, res) => {
   }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //? ===========================================================================================================
 // ! [ Teachers  ]
 app.get("/teacher/teacherHomepage", (req, res) => {
-  res.render("teacher/teacherHomepage");
+  let bitonicID = req.cookies["bitonicID"];
+  let teacherID = req.cookies["teacherID"];
+
+ 
+      if (bitonicID == null || teacherID==null) {
+        // res.send("bad");
+        res.redirect("../../login");
+      } else {
+
+        conn.query(
+          `select * from teacher where bitonicID='${bitonicID}' and teacherID='${teacherID}'`,
+          function (err4, result4) {
+
+
+            if(result4[0]==null){
+              res.redirect("../../");
+            }
+            else{
+            console.log("___________________________________1");
+            console.log(result4);
+
+        res.render("teacher/teacherHomepage",{result4:result4[0]});
+      }
+      }
+      );
+        // res.redirect("teacher/d");
+      }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //? ===========================================================================================================
 // ! [ LOGINS  ]
 app.get("/student/studentLogin", (req, res) => {
 
-    res.render("student/studentLogin");
+  const bitonicID = req.cookies.bitonicID;
+  const studentID = req.cookies.studentID;
+
+  conn.query(
+    `select * from student where bitonicID='${bitonicID}' and studentID='${studentID}'`,
+    async function (err, result1) {
+      if (err) throw err;
+      if (result1[0] == null) {
+        console.log("No Accout Found!");
+        res.render("student/studentLogin");
+      } else {
+       
+          res.redirect("../student/studentHomepage");
+        }
+      }
+    
+  );
   
 });
 
 app.get("/teacher/teacherLogin", (req, res) => {
-  res.render("teacher/teacherLogin");
+ 
+        res.render("teacher/teacherLogin");   
+  
 });
 
 app.get("/admin/adminLogin", (req, res) => {
@@ -204,17 +324,49 @@ app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
 
-app.get("/bitonic/teacherLoginOption", (req, res) => {
-  res.render("bitonic/teacherLoginOption");
-});
-app.get("/bitonic/studentLoginOption", (req, res) => {
-  res.render("bitonic/studentLoginOption");
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //? ===========================================================================================================
 // ! [ LOGOUTS :(  ]
 app.get("/student/logout", (req, res) => {
   res.clearCookie("bitonicID");
   res.clearCookie("studentID");
+
+  res.redirect("../../?err=logged out succesfully");
+});
+app.get("/clgStudent/logout", (req, res) => {
+  res.clearCookie("bitonicID");
+  res.clearCookie("clgStudentID");
 
   res.redirect("../../?err=logged out succesfully");
 });
@@ -226,6 +378,13 @@ app.get("/teacher/logout", (req, res) => {
   res.redirect("../../?err=logged out succesfully");
 });
 
+app.get("/clgTeacher/logout", (req, res) => {
+  res.clearCookie("bitonicID");
+  res.clearCookie("clgTeacherID");
+
+  res.redirect("../../?err=logged out succesfully");
+});
+
 app.get("/admin/adminLogout", (req, res) => {
   res.render("admin/adminLogout");
 });
@@ -233,17 +392,102 @@ app.get("/sudoUser/sudoUserLogout", (req, res) => {
   res.render("sudoUser/sudoUserLogout");
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //? ===========================================================================================================
 // ! [SudoUser FIles :) ]
 app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/index");
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //? ===========================================================================================================
 // ! COMMON Routes :) ]
 app.get("/common/signup", (req, res) => {
   res.render("common/signup");
 });
+app.get("/bitonic/teacherLoginOption", (req, res) => {
+  res.render("bitonic/teacherLoginOption");
+});
+app.get("/bitonic/studentLoginOption", (req, res) => {
+  res.render("bitonic/studentLoginOption");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //? ===========================================================================================================
 // ! [ auth  ]
@@ -277,39 +521,82 @@ app.post("/auth/student", (req, res) => {
       }
     }
   );
+
+
 });
 
 //?! ========================================================TEACHER AUTH0===============================
 app.post("/auth/teacher", (req, res) => {
-  const email = req.body.email;
-  const pwd = req.body.pwd;
+  const email2 = req.body.email;
+  const pwd2 = req.body.pwd;
 
   conn.query(
-    `select * from teacher where email='${email}' or username='${email}'`,
-    async function (err, result1) {
+    `select * from teacher where email='${email2}' or username='${email2}'`,
+    async function (err, result6) {
       if (err) throw err;
-      if (result1[0] == null) {
+      console.log(result6);
+
+      if (result6[0] == null) {
         console.log("No Accout Found!");
         res.render("teacher/teacherLogin", { mess: "No accout Found !" });
       } else {
-        let a = await bcrypt.compare(pwd, result1[0].pwd);
+        let a = await bcrypt.compare(pwd2, result6[0].pwd);
         console.log(a);
 
         if (a == false) {
-          console.log("No Accout Found!");
+          console.log("No!");
           res.render("teacher/teacherLogin", { mess: "Wrong  password!" });
         } else {
-          console.log(result1);
-          res.cookie("bitonicID", result1[0].bitonicID);
-          res.cookie("teacherID", result1[0].teacherID);
+          console.log(result6);
+          res.cookie("bitonicID", result6[0].bitonicID);
+          res.cookie("teacherID", result6[0].teacherID);
 
           res.redirect("../teacher/teacherHomepage");
         }
       }
     }
   );
+
+  
 });
 
+
+//?! ========================================================CLGTEACHER AUTH0===============================
+app.post("/auth/clgTeacher", (req, res) => {
+  const email2 = req.body.email;
+  const pwd2 = req.body.pwd;
+
+  conn.query(
+    `select * from clgTeacher where email='${email2}' or username='${email2}'`,
+    async function (err, result6) {
+      if (err) throw err;
+      console.log(result6);
+
+      if (result6[0] == null) {
+        console.log("No Accout Found!");
+        res.render("clgTeacher/teacherLogin", { mess: "No accout Found !" });
+      } else {
+        let a = await bcrypt.compare(pwd2, result6[0].pwd);
+        console.log(a);
+
+        if (a == false) {
+          console.log("No!");
+          res.render("clgTeacher/teacherLogin", { mess: "Wrong  password!" });
+        } else {
+          console.log(result6);
+          res.cookie("bitonicID", result6[0].bitonicID);
+          res.cookie("clgTeacherID", result6[0].clgTeacherID);
+
+          res.redirect("../clgTeacher/teacherHomepage");
+        }
+      }
+    }
+  );
+
+  });
+
+
+// !{ SIGN UP AUTH0}
 app.get("/auth/signup", (req, res) => {
   const val = req.query;
   const name = req.query.fullName;
@@ -345,10 +632,35 @@ app.get("/auth/signup", (req, res) => {
   );
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //? ===========================================================================================================
 // ! [ Lising to port ]
 app.listen(port, () => {
   console.log(`----------------------------------------------------`);
+  // const aa = await bcrypt.hash("newton",10);
+  // console.log(aa);
 
   console.log(`Running  in http://localhost:8888/`);
 });
