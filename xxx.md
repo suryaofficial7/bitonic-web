@@ -1,3 +1,5 @@
+## Hashing Tricks
+### only use async await methodology
 ```
  // console.log("bitonic@stu-"+uuid.v4())
   // const hash = bcrypt.hashSync("myPlaintextPassword", 10);
