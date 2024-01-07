@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitonic</title>
-    <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animation.css">
+    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/animation.css">
     {{!-- <link rel="stylesheet" href="css/form.css"> --}}
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
+ <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <style>
@@ -21,34 +34,47 @@
     {{>nav}}
 
   {{#if data}}
-    <div id="block" class="alert" style="position: absolute; width: 100% !important; height: 100% !important; top: 0;margin: 0px;padding: 0; justify-content: center !important; ">
+    {{!-- <div id="block" class="alert" style="position: absolute; width: 100% !important; height: 100% !important; top: 0;margin: 0px;padding: 0; justify-content: center !important; ">
 
 <div  class="my-form" style="justify-content: center;margin-top: 0px; border-radius: 0%; position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); " >
 
-<h1>Bitonic Says</h1>
+<h1>Bitonic Says</h1> --}}
 
 {{#if err}}
-<p class="text-danger"> 
-  {{err}} ✅</p>
+
+  <script>
+    alert("{{err}}");
+  </script>
   {{/if}}
 {{#if succ}}
-<p class="text-success"> 
-  {{succ}} ✅</p>
+<script>
+    alert("{{succ}}");
+  </script>
   {{/if}}
 {{#if mess}}
-<p class="text-primary"> 
-  {{mess}} ✅</p>
+<script>
+    alert("{{mess}}");
+  </script>
   {{/if}}
 
 
-<button onclick="work()" class="btn btn-primary">Okay</button>
-<br>
+{{!-- <button onclick="work()" class="btn btn-primary">Okay</button> --}}
+{{!-- <br>
 </div>
 
-    </div>
+    </div> --}}
+<script>
+  function work(){
+delete_cookie("studentID");
+delete_cookie("bitonicID");
+
+
+window.location.href = "/";
+}
+</script>
 
     {{/if}}
 <hr class="hr">
@@ -99,14 +125,7 @@
         var delete_cookie = function(name) {
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 };
-function work(){
-document.getElementById("block").style.display="none";
-delete_cookie("studentID");
-delete_cookie("bitonicID");
 
-
-window.location.href = "/";
-}
 
     function oo() {
       document.getElementById("loading").style.display="none";

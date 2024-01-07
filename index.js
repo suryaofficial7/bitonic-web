@@ -9,8 +9,8 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const alert = require("alert");
-const notifier = require("node-notifier");
-const { fork } = require("child_process");
+const Swal =  require('sweetalert2');
+
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -61,6 +61,7 @@ hbs.registerPartials(partialsPath);
 // ! [ I am Using Arrow Function ]
 
 app.get("/", (req, res) => {
+ 
 
   let err = req.query.err;
   let mess = req.query.mess;
@@ -83,7 +84,30 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+
+  
+  const bitonicID = req.cookies.bitonicID;
+  const studentID = req.cookies.studentID;
+
+  conn.query(
+    `select * from student where bitonicID='${bitonicID}' and studentID='${studentID}'`,
+    async function (err, result1) {
+      if (err) throw err;
+      if (result1[0] == null) {
+        console.log("No Accout Found!");
   res.render("bitonic/login");
+
+      } else {
+       
+          res.redirect("../student/studentHomepage");
+        }
+      }
+    
+  );
+
+
+
+
 });
 
 
@@ -513,8 +537,9 @@ app.post("/auth/student", (req, res) => {
           res.render("student/studentLogin", { mess: "Wrong  password!" });
         } else {
           console.log(result1);
-          res.cookie("bitonicID", result1[0].bitonicID);
-          res.cookie("studentID", result1[0].studentID);
+          var expiryDate = new Date(Number(new Date()) + 3153600000);
+          res.cookie("bitonicID", result1[0].bitonicID,{maxAge:expiryDate});
+          res.cookie("studentID", result1[0].studentID,{maxAge:expiryDate});
 
           res.redirect("../student/studentHomepage");
         }

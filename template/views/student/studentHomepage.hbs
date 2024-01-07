@@ -11,17 +11,18 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/responsive.css" />
-    <link rel="stylesheet" href="/css/animation.css" />
-
-    <link
+ <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/animation.css" />
+
+   
   </head>
   <style>
 
@@ -75,11 +76,134 @@
     <!--? FOOTER -->
 
     <br />
+    
+  <center class="mob-flex"
+    style="display: flex; justify-content: center; width: 100% !important; overflow: scroll !important;">
+<div class="box m-90p" style="height: auto !important; width: auto; overflow: scroll !important; align-items: center !important; align-content: center !important;">
+    <canvas id="myChart4"></canvas>
+
+  </div>
+
+
+    <div class="box only-Mob" style="height: auto !important; width: 90%; overflow: scroll !important;">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="box m-displayNone" style="height: auto !important; width: 600px; overflow: scroll !important;">
+      <canvas id="myChart3"></canvas>
+
+    </div>
+
+
+
+    
+
+    
+  </center>
+
+
+
 
 {{>footer}}
     <script>
 
       function oo() { document.getElementById("loading").style.display="none"; }
     </script>
+    
+  <script>
+
+    function oo() {
+      document.getElementById("loading").style.display = "none";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+    const ctx3 = document.getElementById('myChart3');
+    const ctx4 = document.getElementById('myChart4');
+
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+          label: 'Teacher Attendace 2023-2024',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+          backgroundColor: ['rgb(255, 135, 5,0.3)'],
+          borderColor: ['rgb(255, 135, 5,1)'],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+        indexAxis: 'y',
+
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+          label: 'Teacher Attendace 2023-2024',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+          backgroundColor: ['rgb(255, 135, 5,0.3)'],
+          borderColor: ['rgb(255, 135, 5,1)'],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ["Total Lec","Present","Absent"],
+        datasets: [{
+          label: 'Teacher Attendace 2023-2024',
+          data: [200,120,80],
+          backgroundColor: ['rgb(255, 135, 5,1)',
+          'rgb(0,224,0,1)','rgb(254, 0, 0,1)'],
+          borderColor: ['rgb(255, 135, 5,1)',
+          'rgb(0,224,0,1)','rgb(254, 0, 0,1)'
+          ],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+            indexAxis: 'y',
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
   </body>
 </html>

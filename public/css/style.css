@@ -5,8 +5,13 @@
 /* #ff4a00 */
 /* #c3dfda */
 
-
-
+.icon-small{
+  width: 25px !important;
+  height: 25px !important;
+}
+.mob-block{
+  display: flex !important;
+}
 /*! FONT "syne mono" */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Syne+Mono&display=swap');
 *{
@@ -416,7 +421,7 @@ footer{
 
 /* !responsive */
 
-@media screen and  (max-width: 360px) {
+@media screen and  (max-width: 400px) {
   .d-flex-computer{
     display: block;
   }
@@ -425,6 +430,9 @@ footer{
   }
 .m-w-100{
   width: 100%;
+}
+.mob-flex{
+  display: block !important;
 }
 .only-Mob{
   display: block !important; 
@@ -435,11 +443,17 @@ footer{
     font-weight: 500;
     /* display: none; */
   }
-  
+  .m-w-300{
+    width: 300px !important;
+  }
 .m-displayNone{
 
   display: none !important;
 
+}
+
+.m-90p{
+  width: 90% !important;
 }
   
 
