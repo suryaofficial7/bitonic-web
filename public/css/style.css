@@ -419,11 +419,23 @@ footer{
   display: none !important;
 }
 
+
+.box-ani:hover > img {
+  /* transform: scale(1.3); */
+  transition: 0.5s ease-in-out ;
+  position: relative;
+  z-index: 10;
+  transform: rotateY(30deg);
+/* height: 200px; */
+}
 /* !responsive */
 
 @media screen and  (max-width: 400px) {
   .d-flex-computer{
     display: block;
+  }
+  .m-50{
+    width: 25% !important;
   }
   .contain div{
     width: 93.5% !important;

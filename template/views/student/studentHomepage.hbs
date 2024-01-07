@@ -122,15 +122,34 @@
     const ctx = document.getElementById('myChart');
     const ctx3 = document.getElementById('myChart3');
     const ctx4 = document.getElementById('myChart4');
+{{#if graphData}}
+const jun = `{{graphData.jun}}`;
+const jul = `{{graphData.jul}}`;
+const aug = `{{graphData.aug}}`;
+const sep = `{{graphData.sep}}`;
+const oct = `{{graphData.oct}}`;
+const nov = `{{graphData.nov}}`;
+const dec = `{{graphData.dec}}`;
+const jan = `{{graphData.jan}}`;
+const feb = `{{graphData.feb}}`;
+const mar = `{{graphData.mar}}`;
+
+const apr = `{{graphData.apr}}`;
+const may = `{{graphData.may}}`;
+const totallec =`{{graphData.totallec}}`;
+const presentlec =`{{graphData.presentlec}}`;
+const absentlec =`{{graphData.absentlec}}`;
 
 
+
+{{/if}}
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        labels: ["jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
         datasets: [{
-          label: 'Teacher Attendace 2023-2024',
-          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+          label: ' Attendace 2023-2024',
+          data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
           backgroundColor: ['rgb(255, 135, 5,0.3)'],
           borderColor: ['rgb(255, 135, 5,1)'],
 
@@ -157,7 +176,9 @@
         labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
         datasets: [{
           label: 'Teacher Attendace 2023-2024',
-          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+                   data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
+
+
           backgroundColor: ['rgb(255, 135, 5,0.3)'],
           borderColor: ['rgb(255, 135, 5,1)'],
 
@@ -183,7 +204,7 @@
         labels: ["Total Lec","Present","Absent"],
         datasets: [{
           label: 'Teacher Attendace 2023-2024',
-          data: [200,120,80],
+          data: [totallec,presentlec,absentlec],
           backgroundColor: ['rgb(255, 135, 5,1)',
           'rgb(0,224,0,1)','rgb(254, 0, 0,1)'],
           borderColor: ['rgb(255, 135, 5,1)',

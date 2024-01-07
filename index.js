@@ -151,8 +151,28 @@ app.get("/student/studentHomepage", (req, res) => {
             else{
             console.log("___________________________________1");
             console.log(result4);
-
-        res.render("student/studentHomepage",{result4:result4[0]});
+            const graphData = [
+              {
+                jun: 10,
+                jul: 20,
+                aug: 30,
+                sep: 40,
+                oct: 50,
+                nov: 60,
+                dec: 70,
+                jan: 80,
+                feb: 90,
+                mar: 100,
+                apr: 110,
+                may: 120,
+                totallec:200,
+                presentlec:120,
+                absentlec:80
+              }
+              
+            ];
+            
+        res.render("student/studentHomepage",{result4:result4[0],graphData:graphData[0]});
       }
       }
       );
