@@ -296,8 +296,28 @@ app.get("/teacher/teacherHomepage", (req, res) => {
             else{
             console.log("___________________________________1");
             console.log(result4);
+            const graphData = [
+              {
+                jun: 10,
+                jul: 20,
+                aug: 30,
+                sep: 40,
+                oct: 50,
+                nov: 60,
+                dec: 70,
+                jan: 80,
+                feb: 90,
+                mar: 100,
+                apr: 110,
+                may: 120,
+                totallec:200,
+                presentlec:120,
+                absentlec:80
+              }
+              
+            ];
 
-        res.render("teacher/teacherHomepage",{result4:result4[0]});
+        res.render("teacher/teacherHomepage",{result4:result4[0], graphData:graphData[0]});
       }
       }
       );
@@ -307,8 +327,131 @@ app.get("/teacher/teacherHomepage", (req, res) => {
 
 
 
+app.get("/teacher/profile", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let teacherID = req.cookies["teacherID"];
 
 
+  if (bitonicID == null || teacherID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("teacher/profile");
+
+    // res.redirect("student/d");
+  }
+});
+
+
+app.get("/teacher/upload", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let teacherID = req.cookies["teacherID"];
+
+
+  if (bitonicID == null || teacherID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("teacher/upload");
+
+    // res.redirect("student/d");
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+//? ===========================================================================================================
+// ! [ admins  ]
+app.get("/admin/adminHomepage", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+ 
+      if (bitonicID == null || adminID==null) {
+        // res.send("bad");
+        res.redirect("../../login");
+      } else {
+
+        conn.query(
+          `select * from admin where bitonicID='${bitonicID}' and adminID='${adminID}'`,
+          function (err4, result4) {
+
+
+            if(result4[0]==null){
+              res.redirect("../../");
+            }
+            else{
+            console.log("___________________________________1");
+            console.log(result4);
+            const graphData = [
+              {
+                jun: 10,
+                jul: 20,
+                aug: 30,
+                sep: 40,
+                oct: 50,
+                nov: 60,
+                dec: 70,
+                jan: 80,
+                feb: 90,
+                mar: 100,
+                apr: 110,
+                may: 120,
+                totallec:200,
+                presentlec:120,
+                absentlec:80
+              }
+              
+            ];
+
+        res.render("admin/adminHomepage",{result4:result4[0], graphData:graphData[0]});
+      }
+      }
+      );
+        // res.redirect("admin/d");
+      }
+});
+
+
+
+app.get("/admin/profile", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("admin/profile");
+
+    // res.redirect("student/d");
+  }
+});
+
+
+app.get("/admin/upload", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("admin/upload");
+
+    // res.redirect("student/d");
+  }
+});
 
 
 
@@ -367,7 +510,6 @@ app.get("/admin/adminLogin", (req, res) => {
 app.get("/sudoUser", (req, res) => {
   res.render("sudoUser/sudoUserLogin");
 });
-
 
 
 
@@ -606,39 +748,46 @@ app.post("/auth/teacher", (req, res) => {
 });
 
 
-//?! ========================================================CLGTEACHER AUTH0===============================
-app.post("/auth/clgTeacher", (req, res) => {
-  const email2 = req.body.email;
-  const pwd2 = req.body.pwd;
+
+
+//?! ========================================================admin AUTH0===============================
+app.post("/auth/admin", (req, res) => {
+  const email3 = req.body.email;
+  const pwd3 = req.body.pwd;
 
   conn.query(
-    `select * from clgTeacher where email='${email2}' or username='${email2}'`,
-    async function (err, result6) {
+    `select * from admin where email='${email3}' or username='${email3}'`,
+    async function (err, result7) {
       if (err) throw err;
-      console.log(result6);
+      console.log(result7);
 
-      if (result6[0] == null) {
+      if (result7[0] == null) {
         console.log("No Accout Found!");
-        res.render("clgTeacher/teacherLogin", { mess: "No accout Found !" });
+        res.render("admin/adminLogin", { mess: "No accout Found !" });
       } else {
-        let a = await bcrypt.compare(pwd2, result6[0].pwd);
+        let a = await bcrypt.compare(pwd3, result7[0].pwd);
         console.log(a);
 
         if (a == false) {
           console.log("No!");
-          res.render("clgTeacher/teacherLogin", { mess: "Wrong  password!" });
+          res.render("admin/adminLogin", { mess: "Wrong  password!" });
         } else {
-          console.log(result6);
-          res.cookie("bitonicID", result6[0].bitonicID);
-          res.cookie("clgTeacherID", result6[0].clgTeacherID);
+          console.log(result7);
+          res.cookie("bitonicID", result7[0].bitonicID);
+          res.cookie("adminID", result7[0].adminID);
 
-          res.redirect("../clgTeacher/teacherHomepage");
+          res.redirect("../admin/adminHomepage");
         }
       }
     }
   );
 
-  });
+
+});
+
+
+
+
 
 
 // !{ SIGN UP AUTH0}

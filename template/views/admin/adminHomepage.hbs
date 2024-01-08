@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitonic@Admin | Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/animation.css">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+
+</style>
+
+<body>
+  <!--? NAV BAR  -->
+  {{>adminNav}}
+
+  <!--? CENTER IDEA -->
+
+
+  {{#if result4}}
+
+  <nav class="navbar w-100 container ani1">
+
+    <ul class="w-100">
+
+      <div class="w-100 d-flex text-center align-content-center justify-content-center">
+
+        <li>
+          <img src="{{result4.img}}" height="50px" class="circle" width="50px" alt="profile">
+
+
+          <!-- <img src="brand.png" height="70px" width="70px" alt="" id="brand"> -->
+        </li>
+        <li class="m-2 pl-3 font-bold w-auto">Welcome
+          {{result4.teacherName}}
+        </li>
+
+      </div>
+
+
+    </ul>
+
+  </nav>
+
+
+  <hr class="hr">
+  <div class="container d-flex-computer flex-wrap justify-content-center contain ">
+
+    <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+    <div class="box w-20 ani2">Admin OF
+      <hr /><b style="text-transform: uppercase;">{{result4.adminOf}}</b>
+    </div>
+    
+    <div class="box w-20 ani2">Admin ID
+      <hr /><b><span class="code">{{result4.adminID}}</span></b>
+    </div>
+
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Students Count
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Teacher Count
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Requests
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+     <div class="box w-20 ani2">Admin Name
+      <hr /><b style="text-transform: uppercase;">{{result4.adminName}}</b>
+    </div>
+    {{/if}}
+  </div>
+ 
+    <br />
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+#nohr hr{
+  margin: 0;padding: 0;
+}
+        header {
+            background-color:#EE7214;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container1 {
+            width: auto;
+            background-color: #fff;
+            padding: 20px;
+            {{!-- border-radius: 8px; --}}
+            {{!-- background-color: #83A2FF !important; --}}
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            {{!-- font-weight: bold; --}}
+        }
+        label >div {
+            
+            font-weight: bold;
+        }
+
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        center >img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-radius: 0px;
+background: #e0e0e0;
+box-shadow:  5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+  <body >
+
+
+
+
+
+<div id="nohr" style="justify-content: center ; z-index: 3 !important;" class="d-flex-computer ani1" >
+    <div class="container1 ani2" style="z-index: 5;">
+      <center>
+        
+           <img src="{{result4.img}}" class="ani3" width="200px" alt="">
+           <div>
+            <center class=" mt-2" style="font-weight: bold;">
+            {{result4.adminName}}
+            </center>
+            <hr>
+            <center class=" mt-2" style="font-weight: bold;">
+{{result4.adminOf}} <br>
+            Admin ID : <code> {{result4.adminID}}</code> <br>
+
+            </center>
+            <hr>
+           </div>
+           </center>  
+    </div>
+    <div class="container1 ani4" style="overflow: scroll !important;">
+        <label style="display: flex;" class="ani3" for="AdminName">
+          <div style="width: 130px !important;">Admin Name</div>:&nbsp;  {{result4.adminName}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani3" for="AdminName">
+          <div style="width: 130px !important;">UserName</div>:&nbsp;  {{result4.username}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani2" for="mobileNo">
+          <div style="width: 130px !important;">Admin Of</div>:&nbsp; {{result4.adminOf}}
+          </label>
+
+<hr>
+          
+      
+
+          
+
+        <label style="display: flex;"class="ani4" for="AdminId">
+          <div style="width: 130px !important;">Admin ID</div>:&nbsp;<code> {{result4.adminID}}</code>
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="email">
+          <div style="width: 130px !important;">Email</div>:&nbsp; {{result4.email}}
+          </label>
+<hr>
+        
+        <label style="display: flex;" class="ani5" for="collegeName">
+          <div style="width: 130px !important;">College Name</div>:&nbsp; {{result4.adminOf}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Mobile Number</div>:&nbsp;{{result4.mob}}
+          </label>
+<hr>
+
+          
+ <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Posting</div>:&nbsp; {{result4.posting}}
+          </label>
+<hr>
+
+<label style="display: flex;"class="ani5" for="dob">
+          <div style="width: 130px !important;">Bitonic ID</div>:&nbsp; <code>  {{result4.bitonicID}}</code>
+          </label>
+</div>
+
+</div>
+    
+
+
+
+
+
+{{>footer}}
+    <script>
+
+      function oo() { document.getElementById("loading").style.display="none"; }
+    </script>
+    
+  <script>
+
+    function oo() {
+      document.getElementById("loading").style.display = "none";
+    }
+  </script>
+
+  </body>
+</html>

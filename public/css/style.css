@@ -441,7 +441,7 @@ footer{
     width: 93.5% !important;
   }
 .m-w-100{
-  width: 100%;
+  width: 90% !important;
 }
 .mob-flex{
   display: block !important;

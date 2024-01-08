@@ -94,6 +94,85 @@
     </div>
     {{/if}}
   </div>
+ 
+    <br />
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+#nohr hr{
+  margin: 0;padding: 0;
+}
+        header {
+            background-color:#EE7214;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container1 {
+            width: auto;
+            background-color: #fff;
+            padding: 20px;
+            {{!-- border-radius: 8px; --}}
+            {{!-- background-color: #83A2FF !important; --}}
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            {{!-- font-weight: bold; --}}
+        }
+        label >div {
+            
+            font-weight: bold;
+        }
+
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        center >img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-radius: 0px;
+background: #e0e0e0;
+box-shadow:  5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+  <body >
+ <header class="ani4">
+        <h1>Your Details</h1>
+    </header>
+    <br><br>
+
+
   <center class="mob-flex"
     style="display: flex; justify-content: center; width: 100% !important; overflow: scroll !important;">
 <div class="box m-90p" style="height: auto !important; width: auto; overflow: scroll !important; align-items: center !important; align-content: center !important;">
@@ -112,27 +191,103 @@
 
 
 
-    <div class="box m-90p" style="height: auto !important; width: 400px;">
-      <canvas id="myChart2"></canvas>
-    </div>
+    
 
     
   </center>
 
 
- <center class="mob-flex"
-    style="display: flex; justify-content: center; width: 100% !important; overflow: scroll !important;">
+<div id="nohr" style="justify-content: center ; z-index: 3 !important;" class="d-flex-computer ani1" >
+    <div class="container1 ani2" style="z-index: 5;">
+      <center>
+        
+           <img src="{{result4.img}}" class="ani3" width="200px" alt="">
+           <div>
+            <center class=" mt-2" style="font-weight: bold;">
+            {{result4.teacherName}}
+            </center>
+            <hr>
+            <center class=" mt-2" style="font-weight: bold;">
+{{result4.workingAt}} <br>
+            Teacher ID : <code> {{result4.teacherID}}</code> <br>
 
-  </center>
+            </center>
+            <hr>
+           </div>
+           </center>  
+    </div>
+    <div class="container1 ani4" style="overflow: scroll !important;">
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">Student Name</div>:&nbsp;  {{result4.teacherName}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">UserName</div>:&nbsp;  {{result4.username}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani2" for="mobileNo">
+          <div style="width: 130px !important;">Teacher Of</div>:&nbsp; {{result4.teacherOf}}
+          </label>
+
+<hr>
+          
+      
+
+          
+        <label style="display: flex;" class="ani4" for="mobileNo">
+          <div style="width: 130px !important;">Section</div>:&nbsp; {{result4.section}}
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="studentId">
+          <div style="width: 130px !important;">Teacher ID</div>:&nbsp;<code> {{result4.teacherID}}</code>
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="email">
+          <div style="width: 130px !important;">Email</div>:&nbsp; {{result4.email}}
+          </label>
+<hr>
+        
+        <label style="display: flex;" class="ani5" for="collegeName">
+          <div style="width: 130px !important;">College Name</div>:&nbsp; {{result4.workingAt}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Mobile Number</div>:&nbsp;{{result4.mob}}
+          </label>
+<hr>
+ <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Qualification</div>:&nbsp; {{result4.qualification}}
+          </label>
+<hr>
+          
+ <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Posting</div>:&nbsp; {{result4.posting}}
+          </label>
+<hr>
+<label style="display: flex;"class="ani5" for="dob">
+          <div style="width: 130px !important;">Date of Birth</div>:&nbsp; {{result4.dob}}
+          </label>
+<hr>
+<label style="display: flex;"class="ani5" for="dob">
+          <div style="width: 130px !important;">Bitonic ID</div>:&nbsp; <code>  {{result4.bitonicID}}</code>
+          </label>
+</div>
+
+</div>
+    
 
 
- 
-  
 
-  <!--? FOOTER -->
 
-  {{>footer}}
 
+{{>footer}}
+    <script>
+
+      function oo() { document.getElementById("loading").style.display="none"; }
+    </script>
+    
   <script>
 
     function oo() {
@@ -144,18 +299,36 @@
 
   <script>
     const ctx = document.getElementById('myChart');
-    const ctx2 = document.getElementById('myChart2');
     const ctx3 = document.getElementById('myChart3');
     const ctx4 = document.getElementById('myChart4');
+{{#if graphData}}
+const jun = `{{graphData.jun}}`;
+const jul = `{{graphData.jul}}`;
+const aug = `{{graphData.aug}}`;
+const sep = `{{graphData.sep}}`;
+const oct = `{{graphData.oct}}`;
+const nov = `{{graphData.nov}}`;
+const dec = `{{graphData.dec}}`;
+const jan = `{{graphData.jan}}`;
+const feb = `{{graphData.feb}}`;
+const mar = `{{graphData.mar}}`;
+
+const apr = `{{graphData.apr}}`;
+const may = `{{graphData.may}}`;
+const totallec =`{{graphData.totallec}}`;
+const presentlec =`{{graphData.presentlec}}`;
+const absentlec =`{{graphData.absentlec}}`;
 
 
+
+{{/if}}
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        labels: ["jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
         datasets: [{
-          label: 'Teacher Attendace 2023-2024',
-          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+          label: ' Attendace 2023-2024',
+          data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
           backgroundColor: ['rgb(255, 135, 5,0.3)'],
           borderColor: ['rgb(255, 135, 5,1)'],
 
@@ -176,49 +349,15 @@
     });
 
 
-    new Chart(ctx2, {
-      type: 'pie',
-      data: {
-        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
-        datasets: [{
-          label: 'Teacher Attendace 2023-2024',
-          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
-
-          backgroundColor: [
-            'rgb(255, 0, 0)',
-            'rgb(0, 255, 0)',
-            'rgb(0, 0, 255)',
-            'rgb(255, 255, 0)',
-            'rgb(255, 0, 255)',
-            'rgb(0, 255, 255)',
-            'rgb(128, 128, 128)',
-            'rgb(255, 165, 0)',
-            'rgb(0, 128, 0)',
-            'rgb(128, 0, 128)',
-            'rgb(0, 128, 128)',
-            'rgb(255, 192, 203)',
-          ],
-          borderWidth: 2,
-
-        }],
-
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
-
     new Chart(ctx3, {
       type: 'bar',
       data: {
         labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
         datasets: [{
           label: 'Teacher Attendace 2023-2024',
-          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 23, 2],
+                   data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
+
+
           backgroundColor: ['rgb(255, 135, 5,0.3)'],
           borderColor: ['rgb(255, 135, 5,1)'],
 
@@ -244,7 +383,7 @@
         labels: ["Total Lec","Present","Absent"],
         datasets: [{
           label: 'Teacher Attendace 2023-2024',
-          data: [200,120,80],
+          data: [totallec,presentlec,absentlec],
           backgroundColor: ['rgb(255, 135, 5,1)',
           'rgb(0,224,0,1)','rgb(254, 0, 0,1)'],
           borderColor: ['rgb(255, 135, 5,1)',
@@ -266,6 +405,5 @@
       }
     });
   </script>
-</body>
-
+  </body>
 </html>

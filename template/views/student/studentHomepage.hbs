@@ -43,7 +43,7 @@
 
           <li>
             <img
-              src="https://pbs.twimg.com/media/EkMx6QPXsAA1Dfn.jpg"
+              src="{{result4.img}}"
               class="circle"
               width="50px"
               alt="profile"
@@ -76,7 +76,83 @@
     <!--? FOOTER -->
 
     <br />
-    
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+#nohr hr{
+  margin: 0;padding: 0;
+}
+        header {
+            background-color:#EE7214;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container1 {
+            width: auto;
+            background-color: #fff;
+            padding: 20px;
+            {{!-- border-radius: 8px; --}}
+            {{!-- background-color: #83A2FF !important; --}}
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            {{!-- font-weight: bold; --}}
+        }
+        label >div {
+            
+            font-weight: bold;
+        }
+
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        center >img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-radius: 0px;
+background: #e0e0e0;
+box-shadow:  5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+  <body >
+ <header class="ani4">
+        <h1>Your Details</h1>
+    </header>
+    <br><br>
+
+
   <center class="mob-flex"
     style="display: flex; justify-content: center; width: 100% !important; overflow: scroll !important;">
 <div class="box m-90p" style="height: auto !important; width: auto; overflow: scroll !important; align-items: center !important; align-content: center !important;">
@@ -99,6 +175,84 @@
 
     
   </center>
+
+
+<div id="nohr" style="justify-content: center ; z-index: 3 !important;" class="d-flex-computer ani1" >
+    <div class="container1 ani2" style="z-index: 5;">
+      <center>
+        
+           <img src="{{result4.img}}" class="ani3" width="200px" alt="">
+           <div>
+            <center class=" mt-2" style="font-weight: bold;">
+            {{result4.studentName}}
+            </center>
+            <hr>
+            <center class=" mt-2" style="font-weight: bold;">
+{{result4.school}} <br>
+            Student ID : <code> {{result4.studentID}}</code> <br>
+            
+
+            </center>
+            <hr>
+           </div>
+           </center>  
+    </div>
+    <div class="container1 ani4" style="overflow: scroll !important;">
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">Student Name</div>:&nbsp;  {{result4.studentName}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">UserName</div>:&nbsp;  {{result4.username}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani2" for="mobileNo">
+          <div style="width: 130px !important;">student Of</div>:&nbsp; {{result4.std}}
+          </label>
+
+<hr>
+          
+      
+
+          
+        <label style="display: flex;" class="ani4" for="mobileNo">
+          <div style="width: 130px !important;">Section</div>:&nbsp; {{result4.section}}
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="studentId">
+          <div style="width: 130px !important;">student ID</div>:&nbsp;<code> {{result4.studentID}}</code>
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="email">
+          <div style="width: 130px !important;">Email</div>:&nbsp; {{result4.email}}
+          </label>
+<hr>
+        <label style="display: flex;"class="ani5" for="dob">
+          <div style="width: 130px !important;">Date of Birth</div>:&nbsp; {{result4.dob}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="collegeName">
+          <div style="width: 130px !important;">College Name</div>:&nbsp; {{result4.school}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Mobile Number</div>:&nbsp;{{result4.mob}}
+          </label>
+
+<hr>
+          
+
+
+           <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Bitonic ID</div>:&nbsp; <code> {{result4.bitonicID}}</code>
+          </label>
+</div>
+
+</div>
+    
+
 
 
 
@@ -175,7 +329,7 @@ const absentlec =`{{graphData.absentlec}}`;
       data: {
         labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
         datasets: [{
-          label: 'Teacher Attendace 2023-2024',
+          label: 'student Attendace 2023-2024',
                    data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
 
 
@@ -203,7 +357,7 @@ const absentlec =`{{graphData.absentlec}}`;
       data: {
         labels: ["Total Lec","Present","Absent"],
         datasets: [{
-          label: 'Teacher Attendace 2023-2024',
+          label: 'student Attendace 2023-2024',
           data: [totallec,presentlec,absentlec],
           backgroundColor: ['rgb(255, 135, 5,1)',
           'rgb(0,224,0,1)','rgb(254, 0, 0,1)'],
