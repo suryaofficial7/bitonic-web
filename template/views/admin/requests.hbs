@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitonic@Admin | All Teachers</title>
+    <title>Bitonic@Admin | Requests</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,19 +27,7 @@
     {{>adminNav}}
 
 
-    <div class="container d-flex-computer flex-wrap justify-content-center contain ">
 
-        <div class="box w-20 ani2">Total Teachers
-            <hr /><b style="text-transform: uppercase;">{{total.total}}</b>
-        </div>
-        <div class="box w-20 ani2">Download Data
-            <hr /><b style="text-transform: uppercase;"><a href=""><button class="btn-primary btn w-50">Download</button></a></b>
-        </div>
-
-        <div class="box w-20 ani2">Add Teacher 
-            <hr /><b style="text-transform: uppercase;"><a href=""><button class="btn-primary btn w-50">Add</button></a></b>
-        </div>
-    </div>
     <div class="container box " style="height: 50vh; overflow: scroll;">
         <table class="table ani">
             {{!-- {{#if err}} --}}
@@ -49,10 +37,9 @@
             <thead>
                 <tr>
                     <th class="ani1" scope="col">ID</th>
-                    <th class="ani1" scope="col">Img</th>
-                    <th class="ani2" scope="col">Handle</th>
+                    {{!-- <th class="ani1" scope="col">Img</th> --}}
                     <th class="ani2" scope="col">Name</th>
-                    <th class="ani3" scope="col">Mentor Of</th>
+                    <th class="ani2" scope="col">Email</th>
                     <th class="ani3" scope="col">View</th>
                     <th class="ani4" scope="col">Update</th>
                     <th class="ani4" scope="col">Delete</th>
@@ -61,17 +48,15 @@
             </thead>
             <tbody>
 
-                {{#each result8}}
+                {{#each result10}}
                 <tr class="ani2">
-                    <th scope="row"><code class="code">{{this.teacherID}}</code></th>
-                    <td><img src="{{this.img}}" width="40" height="40"
-                            alt="DP"></td>
-                    <td>{{this.username}}</td>
-                    <td>{{this.teacherName}}</td>
-                    <td>{{this.teacherOf}}</td>
-                    <td><a href="viewTeacher?teacherID={{this.teacherID}}"><button class="btn btn-primary" style="width: 70px;">View</button></a></td>
-                    <td><a href="updateTeacher?teacherID={{this.teacherID}}"><button class="btn btn-success" style="width: 70px;">Edit</button></a></td>
-                    <td><a href="deleteTeacher?teacherID={{this.teacherID}}"><button class="btn btn-danger" style="width: 70px;">Delete</button></a></td>
+                    <th scope="row" ><code class="code">{{this.queueID}}</code></th>
+                    {{!-- <td><img src="{{this.img}}" width="40" height="40"                          alt="DP"></td> --}}
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.contact}}</td>
+                    <td><a href="sendOTP?queueID={{this.queueID}}"><button class="btn btn-success" style="width: 100px;">Send OTP</button></a></td>
+                    <td><a href="deletequeue?queueID={{this.queueID}}"><button class="btn btn-danger" style="width: 100px;">Drop</button></a></td>
 
                 </tr>
 

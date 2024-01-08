@@ -422,7 +422,7 @@ app.get("/admin/adminHomepage", (req, res) => {
 
 
 
-app.get("/admin/profile", (req, res) => {
+app.get("/admin/teachers", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
   let adminID = req.cookies["adminID"];
 
@@ -431,11 +431,99 @@ app.get("/admin/profile", (req, res) => {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-    res.render("admin/profile");
+
+conn.query(`select * from teacher`,function (err8 , result8, field ){
+
+  if(err8){throw err8}
+  else if(result8[0]==null){
+  console.log(result8);
+
+    res.render("admin/teacherData",{err:"No Data Found !!!!!!"});
+
+  }
+  else{
+
+  conn.query(`select count(tid) as total from teacher `,function (err9 , result9, field2 ){
+    if(err9) throw err9
+    res.render("admin/teacherData",{result8:result8,total:result9[0]});
 
     // res.redirect("student/d");
+  })
+}
+})
+
+
   }
 });
+
+
+
+app.get("/admin/students", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+
+conn.query(`select * from student`,function (err8 , result8, field ){
+
+  if(err8){throw err8}
+  else if(result8[0]==null){
+  console.log(result8);
+
+    res.render("admin/studentData",{err:"No Data Found !!!!!!"});
+
+  }
+  else{
+
+  conn.query(`select count(sid) as total from student `,function (err9 , result9, field2 ){
+    if(err9) throw err9
+    res.render("admin/studentData",{result8:result8,total:result9[0]});
+
+    // res.redirect("student/d");
+  })
+}
+})
+  }
+});
+
+app.get("/admin/requests", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+
+conn.query(`select * from queue`,function (err10 , result10, field ){
+
+  if(err10){throw err10}
+  else if(result10[0]==null){
+  console.log(result10);
+
+    res.render("admin/requests",{err:"No Data Found !!!!!!"});
+
+  }
+  else{
+
+
+    res.render("admin/requests",{result10:result10});
+
+    // res.redirect("student/d");
+
+}
+})
+
+
+  }
+});
+
+
 
 
 app.get("/admin/upload", (req, res) => {
@@ -550,12 +638,7 @@ app.get("/student/logout", (req, res) => {
 
   res.redirect("../../?err=logged out succesfully");
 });
-app.get("/clgStudent/logout", (req, res) => {
-  res.clearCookie("bitonicID");
-  res.clearCookie("clgStudentID");
 
-  res.redirect("../../?err=logged out succesfully");
-});
 
 app.get("/teacher/logout", (req, res) => {
   res.clearCookie("bitonicID");
@@ -564,15 +647,13 @@ app.get("/teacher/logout", (req, res) => {
   res.redirect("../../?err=logged out succesfully");
 });
 
-app.get("/clgTeacher/logout", (req, res) => {
+
+
+app.get("/admin/Logout", (req, res) => {
   res.clearCookie("bitonicID");
-  res.clearCookie("clgTeacherID");
+  res.clearCookie("adminID");
 
   res.redirect("../../?err=logged out succesfully");
-});
-
-app.get("/admin/adminLogout", (req, res) => {
-  res.render("admin/adminLogout");
 });
 app.get("/sudoUser/sudoUserLogout", (req, res) => {
   res.render("sudoUser/sudoUserLogout");
