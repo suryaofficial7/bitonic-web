@@ -12,11 +12,17 @@
 .mob-block{
   display: flex !important;
 }
+
+.cen td{
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle
+}
 /*! FONT "syne mono" */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Syne+Mono&display=swap');
 *{
     /* color: black !important; */
-    /* border: 1px solid red; */
+    /* border: 2px solid red !important; */
     text-decoration-line: none !important;
 
 /* margin: 0 !important;padding: 0 !important; */
@@ -128,6 +134,7 @@ list-style-type: none;
 body{
     background-repeat: no-repeat;
    background-size: cover;
+   /* border: 2px solid red !important; */
    height: 100%;
     /* background-image: linear-gradient(#0bc8d2,#f5d0ae); */
     /* background-image: linear-gradient(rgb(242 243 252)); */

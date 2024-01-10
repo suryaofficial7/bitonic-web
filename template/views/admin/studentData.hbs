@@ -29,13 +29,13 @@
 
     <div class="container d-flex-computer flex-wrap justify-content-center contain ">
 
-        <div class="box w-20 ani2">Total Students
-            <hr /><b style="text-transform: uppercase;">{{total.total}}</b>
+        
+        <div class="box w-20 ani2">Download Student Data
+            <hr /><b style="text-transform: uppercase;"><a href="students/downloadData"><button class="btn-primary btn w-50">Download</button></a></b>
         </div>
-        <div class="box w-20 ani2">Download Data
-            <hr /><b style="text-transform: uppercase;"><a href=""><button class="btn-primary btn w-50">Download</button></a></b>
+<div class="box w-20 ani2">Attendance Data
+            <hr /><b style="text-transform: uppercase;"><a href="students/downloadAttendance"><button class="btn-primary btn w-50">Download</button></a></b>
         </div>
-
         <div class="box w-20 ani2">Add Student 
             <hr /><b style="text-transform: uppercase;"><a href=""><button class="btn-primary btn w-50">Add</button></a></b>
         </div>
@@ -52,14 +52,14 @@
                     <th class="ani1" scope="col">Img</th>
                     <th class="ani2" scope="col">Handle</th>
                     <th class="ani2" scope="col">Name</th>
-                    <th class="ani3" scope="col">Mentor Of</th>
+                    <th class="ani3" scope="col">Class</th>
                     <th class="ani3" scope="col">View</th>
                     <th class="ani4" scope="col">Update</th>
                     <th class="ani4" scope="col">Delete</th>
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="cen">
 
                 {{#each result8}}
                 <tr class="ani2">
@@ -68,7 +68,7 @@
                             alt="DP"></td>
                     <td>{{this.username}}</td>
                     <td>{{this.studentName}}</td>
-                    <td>{{this.studentOf}}</td>
+                    <td style="font-variant-caps: all-petite-caps;">{{this.std}}</td>
                     <td><a href="vewStudent?studentID={{this.studentID}}"><button class="btn btn-primary" style="width: 70px;">View</button></a></td>
                     <td><a href="updatestudent?studentID={{this.studentID}}"><button class="btn btn-success" style="width: 70px;">Edit</button></a></td>
                     <td><a href="deletestudent?studentID={{this.studentID}}"><button class="btn btn-danger" style="width: 70px;">Delete</button></a></td>
@@ -84,8 +84,12 @@
         </table>
 
     </div>
+    <div class="container d-flex-computer flex-wrap justify-content-center contain ">
 
-
+<div class="box w-20 ani2">Total Students
+            <hr /><b style="text-transform: uppercase;">{{total.total}}</b>
+        </div>
+        </div>
     {{>footer}}
     <script>
 

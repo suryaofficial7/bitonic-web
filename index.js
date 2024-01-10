@@ -10,7 +10,8 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const alert = require("alert");
 const Swal =  require('sweetalert2');
-
+const fs = require('fs');
+const cc = require('json2csv');
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -56,12 +57,13 @@ hbs.registerPartials(partialsPath);
 
 
 
-
 //! [ The root Page ]
 // ! [ I am Using Arrow Function ]
 
 app.get("/", (req, res) => {
  
+
+  // fs.writeFile('domain.csv');
 
   let err = req.query.err;
   let mess = req.query.mess;
@@ -472,12 +474,14 @@ conn.query(`select * from student`,function (err8 , result8, field ){
 
   if(err8){throw err8}
   else if(result8[0]==null){
+    console.log("-------------------------------");
   console.log(result8);
 
     res.render("admin/studentData",{err:"No Data Found !!!!!!"});
 
   }
   else{
+    console.log(result8);
 
   conn.query(`select count(sid) as total from student `,function (err9 , result9, field2 ){
     if(err9) throw err9
@@ -526,7 +530,7 @@ conn.query(`select * from queue`,function (err10 , result10, field ){
 
 
 
-app.get("/admin/upload", (req, res) => {
+app.get("/admin/addTeacher", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
   let adminID = req.cookies["adminID"];
 
@@ -535,7 +539,7 @@ app.get("/admin/upload", (req, res) => {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-    res.render("admin/upload");
+    res.render("admin/addTeacher");
 
     // res.redirect("student/d");
   }
@@ -614,7 +618,63 @@ app.get("/sudoUser", (req, res) => {
 
 
 
+//? ===========================================================================================================
+// ! [ DOWNLOADS : )
+app.get("/admin/students/downloadData", (req, res) => {
+  conn.query(`select * from student`, function (err13, res13, field13) {
+    if (err13) {
+      console.log(err13);
+    } else {
+      console.log(JSON.stringify(res13));
+      const csvData = cc.parse(JSON.parse(JSON.stringify(res13)));
+      console.log(csvData);
+      fs.writeFile(
+        path.join(__dirname, "Data/studentData.csv"),
+        csvData,
+        "utf8",
+        function (err) {
+          if (err) {
+            console.log(
+              "Some error occured - file either not saved or corrupted file saved."
+            );
+            console.log(err);
+          } else {
+            console.log("It's saved!");
+            res.download(path.join(__dirname, "Data/studentData.csv"));
+          }
+        }
+      );
+    }
+  });
+});
 
+app.get("/admin/teacher/downloadData", (req, res) => {
+  conn.query(`select * from teacher`, function (err13, res13, field13) {
+    if (err13) {
+      console.log(err13);
+    } else {
+      console.log(JSON.stringify(res13));
+      const csvData = cc.parse(JSON.parse(JSON.stringify(res13)));
+      console.log(csvData);
+      fs.writeFile(
+        path.join(__dirname, "Data/teacherData.csv"),
+        csvData,
+        "utf8",
+        function (err) {
+          if (err) {
+            console.log(
+              "Some error occured - file either not saved or corrupted file saved."
+            );
+            console.log(err);
+          } else {
+            console.log("It's saved!");
+            res.download(path.join(__dirname, "Data/teacherData.csv"));
+          }
+        }
+      );
+    }
+  });
+});
 
 
 
