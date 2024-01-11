@@ -4,110 +4,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bitonic@Admin | All Teachers</title>
+  <title>Bitonic@Admin | Add Teachers</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
   <link rel="stylesheet" href="/css/form.css">
-  <link rel="stylesheet" href="/css/responsive.css">
+  {{!-- <link rel="stylesheet" href="/css/style.css"> --}}
+
+  {{!-- <link rel="stylesheet" href="/css/responsive.css"> --}}
   <link rel="stylesheet" href="/css/animation.css">
 
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
 
-    form {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      background-color: #4caf50;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-  </style>
   <title>Teacher Information Form</title>
 </head>
-<body style="">
+<style>
+  .my-form {
+justify-self: center !important;
+width: 70% !important;
+justify-content: space-around !important;
+padding: 20px !important;
+  border-radius: 0.5rem;
 
-  <form class="box ani2 m-0" style="text-align: center;" >
-    <center>
-Adding Teacher Account by  Admin - <code class="code">bitonic@admin3456-hdf <br></code>
-</center>
-<hr>
-    <label for="teacherName">Teacher Name: <code style="font-weight: bolder;">*</code></label>
-    <input type="text" id="teacherName" name="teacherName" placeholder="Issac Newton" required>
+    background-color: white;
+margin: 0 !important; 
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-    <label for="username">Username:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="username" name="username" placeholder="name@institutionName" required>
+margin: auto !important;
+}
+body{
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* border: 2px solid red !important; */
+   height: 100%;
+    /* background-image: linear-gradient(#0bc8d2,#f5d0ae); */
+    /* background-image: linear-gradient(rgb(242 243 252)); */
 
-  
-    <label for="pwd">Password:<code style="font-weight:bolder">*</code></label>
-    <input type="password" id="pwd" name="pwd" placeholder="S@surya123" required>
-  <label for="email">Email:<code style="font-weight:bolder">*</code></label>
-    <input type="email" id="email" name="email" placeholder="suryask@gmail.com" required>
+    /* background-color: rgb(56 74 254) !important; */
 
-    <label for="qualification">Qualification:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="qualification" name="qualification" placeholder="ex: MCA | MBA" required>
+  background: #f1f1f1!important;
 
-    <label for="dob">Date of Birth:<code style="font-weight:bolder">*</code></label>
-    <input type="date" id="dob" name="dob" required>
+    /* overflow: hidden; */
+    user-select: none;
+}
+.fig{
+justify-content: center !important;
+padding: 10px !important;
+margin: auto !important;
+width: 100% !important;
+}
+</style>
+<body>
 
-    <label for="img">Select Image </label>
-    <input type="file" accept="jpg" id="img" name="img" required>
-
-   
-
-    <label for="teacherOf">Teacher Of:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="teacherOf" name="teacherOf" placeholder="ex: Tybsc.IT or 10" required>
-
-    <label for="mob">Mobile Number:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="mob" name="mob" placeholder="ex:8796751234" required>
-
-    <label for="workingAt">Working At:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="workingAt" name="workingAt" required>
-
-    <label for="posting">Posting:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="posting" name="posting" placeholder="ex teaching Staff | Worker" required>
-
-    <label for="section">Section:<code style="font-weight:bolder">*</code></label>
-    <input type="text" id="section" name="section" placeholder="A or B if None Type A" required>
-
-    <input type="submit" value="Submit">
+<div class="container mt-5 fig">
+  <h2 class="text-center">Teacher Registration</h2>
+  <br>
+  <form class="my-form ani1" >
+    <div class="form-row ani1">
+      <div class="form-group col-md-6">
+        <label for="teacherName">Teacher Name</label>
+        <input type="text" class="form-control" id="teacherName" name="teacherName" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+    </div>
+    <div class="form-row ani1">
+      <div class="form-group col-md-6">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+    </div>
+    <div class="form-row ani3">
+      <div class="form-group col-md-6">
+        <label for="qualification">Qualification</label>
+        <input type="text" class="form-control" id="qualification" name="qualification" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dob">Date of Birth</label>
+        <input type="date" class="form-control" id="dob" name="dob" required>
+      </div>
+    </div>
+    <div class="form-row ani3">
+      <div class="form-group col-md-6">
+        <label for="image">Select Image</label>
+        <input type="file" class="form-control-file" id="image" name="image">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="teacherOf">Teacher Of</label>
+        <input type="text" class="form-control" id="teacherOf" name="teacherOf" required>
+      </div>
+    </div>
+    <div class="form-row ani4">
+      <div class="form-group col-md-6">
+        <label for="mobileNumber">Mobile Number</label>
+        <input type="tel" class="form-control" id="mobileNumber" name="mobileNumber" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="workingAt">Working At</label>
+        <input type="text" class="form-control" id="workingAt" name="workingAt" required>
+      </div>
+    </div>
+    <div class="form-row ani4">
+      <div class="form-group col-md-6">
+        <label for="posting">Posting</label>
+        <input type="text" class="form-control" id="posting" name="posting" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="section">Section</label>
+        <input type="text" class="form-control" id="section" name="section" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+</div>
+
+</body>
 
 </body>
 </html>
