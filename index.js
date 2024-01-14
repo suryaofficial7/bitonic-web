@@ -406,28 +406,18 @@ app.get("/admin/adminHomepage", (req, res) => {
             else{
             console.log("___________________________________1");
             console.log(result4);
-            const graphData = [
-              {
-                jun: 10,
-                jul: 20,
-                aug: 30,
-                sep: 40,
-                oct: 50,
-                nov: 60,
-                dec: 70,
-                jan: 80,
-                feb: 90,
-                mar: 100,
-                apr: 110,
-                may: 120,
-                totallec:200,
-                presentlec:120,
-                absentlec:80
-              }
-              
-            ];
+            conn.query(`SELECT (SELECT COUNT(tid) FROM teacher where workPlaceID='${req.cookies.adminID}') AS teacher,(SELECT COUNT(sid) FROM student where schoolID='${req.cookies.adminID}') AS student , (SELECT COUNT(qid) FROM queue where schoolId='${req.cookies.adminID}') as queue FROM dual;`,(err23,result23,field)=>{
+if(err23) {console.log(err23)}
 
-        res.render("admin/adminHomepage",{result4:result4[0], graphData:graphData[0]});
+else{
+console.log(">>>>>>>>>>>>>>>>>1;");
+console.log(`${result23[0].count2}`);
+
+
+        res.render("admin/adminHomepage",{result4:result4[0],count:result23[0]});
+      }
+      })
+
       }
       }
       );
@@ -447,7 +437,7 @@ app.get("/admin/teachers", (req, res) => {
     res.redirect("../../login");
   } else {
 
-conn.query(`select * from teacher`,function (err8 , result8, field ){
+conn.query(`select * from teacher where workPlaceID='${req.cookies.adminID}'`,function (err8 , result8, field ){
 
   if(err8){throw err8}
   else if(result8[0]==null){
@@ -458,7 +448,7 @@ conn.query(`select * from teacher`,function (err8 , result8, field ){
   }
   else{
 
-  conn.query(`select count(tid) as total from teacher `,function (err9 , result9, field2 ){
+  conn.query(`select count(tid) as total from teacher where workPlaceID='${req.cookies.adminID}' `,function (err9 , result9, field2 ){
     if(err9) throw err9
     res.render("admin/teacherData",{result8:result8,total:result9[0]});
 
@@ -517,7 +507,7 @@ app.get("/admin/requests", (req, res) => {
     res.redirect("../../login");
   } else {
 
-conn.query(`select * from queue`,function (err10 , result10, field ){
+conn.query(`select * from queue where schoolId='${req.cookies.adminID}'`,function (err10 , result10, field ){
 
   if(err10){throw err10}
   else if(result10[0]==null){
@@ -1008,11 +998,15 @@ app.get("/auth/signup", (req, res) => {
 app.post("/insert/addTeacher",upload.single('avatar') , async  (req,res)=>{
   console.log("============================");
 
-  const p = await bcrypt.hash("123",10);
+  const p = await bcrypt.hash(req.body.password,10);
   const bID = "bitonic@tea-"+uuid.v4().substring(0,15);
-conn.query(`INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID, teacherOf, mob, workingAt, posting, section) VALUES (NULL, '${bID}', '${req.body.teacherName}', '${req.body.username}', '${req.body.email}', '${p}', '${req.body.qualification}', '${req.body.dob}', '${"/uploads/"+req.file.filename}', '${bID.substring(0,16)}', '7', '${req.body.mobileNumber}', '${req.body.workingAt}', '${req.body.posting}', '${req.body.section}');`, (err15,res15,field)=>{
+  console.log(req.body);
+  const adminID = req.cookies.adminID;
+  console.log(adminID);
 
+conn.query(`INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID, teacherOf, mob, workingAt, posting, section,workPlaceID) VALUES (NULL, '${bID}', '${req.body.teacherName}', '${req.body.username}', '${req.body.email}', '${p}', '${req.body.qualification}', '${req.body.dob}', '${"/uploads/"+req.file.filename}', '${bID.substring(0,16)}', '${req.body.teacherOf}', '${req.body.mobileNumber}', '${req.body.workingAt}', '${req.body.posting}', '${req.body.section}','${adminID}');`, (err15,res15,field)=>{
 
+if(err15) throw err15
 
 res.redirect("../admin/addTeacher?mes=success")
 
@@ -1023,7 +1017,22 @@ res.redirect("../admin/addTeacher?mes=success")
 
 
 
+// ! DELETING 
 
+//! admin/deletequeue?queueID=cdf2649
+
+app.get("/admin/deletequeue",(req,res)=>{
+conn.query(`delete  from queue where queueID='${req.query.queueID}'`,(err20,fields20)=>{
+if(err20) throw err20
+// res.send(`Deleting the student With Queue ID ${req.query.queueID}`);
+
+
+})
+
+
+res.redirect("/admin/requests");
+
+})
 
 
 
