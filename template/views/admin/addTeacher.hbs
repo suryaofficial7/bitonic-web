@@ -62,9 +62,18 @@ width: 100% !important;
 <body>
 
 <div class="container mt-5 fig">
+{{#if mes}}
+  <div class="alert alert-success" role="alert">
+  Teacher Has been Added Succesfully...
+</div>
+<br>
+<br>
+<br>
+
+{{/if}}
   <h2 class="text-center">Teacher Registration</h2>
   <br>
-  <form class="my-form ani1" >
+  <form class="my-form ani1" action="../insert/addTeacher" method="post"  enctype="multipart/form-data">
     <div class="form-row ani1">
       <div class="form-group col-md-6">
         <label for="teacherName">Teacher Name</label>
@@ -98,7 +107,7 @@ width: 100% !important;
     <div class="form-row ani3">
       <div class="form-group col-md-6">
         <label for="image">Select Image</label>
-        <input type="file" class="form-control-file" id="image" name="image">
+        <input type="file" class="form-control-file" id="image" name="avatar">
       </div>
       <div class="form-group col-md-6">
         <label for="teacherOf">Teacher Of</label>

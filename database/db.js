@@ -6,5 +6,5 @@ const conn = mysql.createConnection({
     database:"bitonic",
     // port:3306
   })
-console.log(conn);
+// console.log(conn);
 exports.conn = conn;

@@ -11,7 +11,20 @@ const cookieParser = require("cookie-parser");
 const alert = require("alert");
 const Swal =  require('sweetalert2');
 const fs = require('fs');
+var nodemailer = require('nodemailer');
 const cc = require('json2csv');
+const multer  = require('multer')
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname,"/public/uploads"))
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, uniqueSuffix + '-' +file.originalname )
+  }
+})
+
+const upload = multer({ storage: storage })
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -535,12 +548,21 @@ app.get("/admin/addTeacher", (req, res) => {
   let adminID = req.cookies["adminID"];
 
 
+
+
   if (bitonicID == null || adminID == null) {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-    res.render("admin/addTeacher");
 
+    if(req.query.mes!=null){
+      res.render("admin/addTeacher",{mes:"succes"});
+
+  
+    }else{
+
+    res.render("admin/addTeacher");
+  }
     // res.redirect("student/d");
   }
 });
@@ -981,6 +1003,23 @@ app.get("/auth/signup", (req, res) => {
 
 
 
+//? ===========================================================================================================
+// ! [ Insert Teachers ]
+app.post("/insert/addTeacher",upload.single('avatar') , async  (req,res)=>{
+  console.log("============================");
+
+  const p = await bcrypt.hash("123",10);
+  const bID = "bitonic@tea-"+uuid.v4().substring(0,15);
+conn.query(`INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID, teacherOf, mob, workingAt, posting, section) VALUES (NULL, '${bID}', '${req.body.teacherName}', '${req.body.username}', '${req.body.email}', '${p}', '${req.body.qualification}', '${req.body.dob}', '${"/uploads/"+req.file.filename}', '${bID.substring(0,16)}', '7', '${req.body.mobileNumber}', '${req.body.workingAt}', '${req.body.posting}', '${req.body.section}');`, (err15,res15,field)=>{
+
+
+
+res.redirect("../admin/addTeacher?mes=success")
+
+})
+
+
+})
 
 
 
@@ -992,10 +1031,14 @@ app.get("/auth/signup", (req, res) => {
 
 //? ===========================================================================================================
 // ! [ Lising to port ]
-app.listen(port, () => {
+app.listen(port,  async () => {
   console.log(`----------------------------------------------------`);
-  // const aa = await bcrypt.hash("newton",10);
-  // console.log(aa);
+  const aa = await bcrypt.hash("1234567",10);
+  console.log(aa);
+
 
   console.log(`Running  in http://localhost:8888/`);
 });
+
+
+
