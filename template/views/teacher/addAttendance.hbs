@@ -49,16 +49,17 @@
         }
 
         label {
-            background-color: #4caf50;
-            color: #fff;
+            width: 150px;
+            {{!-- background-color: #4caf50; --}}
+            color: black;
             padding: 10px;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
+            
         }
 
         label:hover {
-            background-color: #45a049;
         }
 
         #fileName {
@@ -100,21 +101,48 @@
 <body>
 {{>teacherNav}}
     <header>
-        <h1>Drag and Drop File Upload</h1>
+        <h1>Attendance Details</h1>
     </header>
 
-    <form  action="uploads" method="post" class="container1 m-w-100" enctype="multipart/form-data">
+    <form  action="getStudents" method="post" class="container1 m-w-100">
         <div id="dropZone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            <p>Drag and drop a PDF or Word file here, or click to select one.</p>
-            <input type="file" id="fileInput" name="files" accept=".pdf, .doc, .docx" onchange="handleFileChange(this.files)">
-            <label for="fileInput" class="btn btn-primary">Choose File</label>
-            <span id="fileName">No file chosen</span>
-            <br><br>
-            <input type="text"  style="width: 80%;" name="fileName" placeholder="Ex: chapter5" required>
+            <p class="text-danger" style="font-weight: bold;">Set your Appropriate Option </p>
+         
 
-        </div>
+            <label for="">Select Div :  </label>
 
-        <button class="btn btn-primary" type="submit">Upload</button>
+ <select class="btn btn-primary" name="section" id="" required >
+
+
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+
+
+            </select>
+
+            <br>
+<input type="hidden" name="standard" value="{{teacherData.standard}}">
+<input type="hidden" name="subject" value="{{teacherData.teacherOf}}">
+<input type="hidden" name="teacher" value="{{teacherData.teacherName}}">
+
+
+          
+<center style="margin: auto; justify-content: center; width: 100%;">
+    <br>
+    <code style="display: flex; margin: 5px; justify-content: center;"> <div style="color: black;"> Your Name   </div> <div> :    {{teacherData.teacherName}}</div></code>
+    <code style="display: flex; margin: 5px; justify-content: center;"> <div style="color: black;"> Your Standard   </div> <div> : {{teacherData.standard}}</div></code>
+    <code style="display: flex; margin: 5px; justify-content: center;"> <div style="color: black;"> Your Subject    </div> <div> : {{teacherData.teacherOf}}</div></code>
+    <code style="display: flex; margin: 5px; justify-content: center;"> <div style="color: black;"> Your teacher ID </div> <div> : {{teacherData.teacherID}}</div></code>
+    <code style="display: flex; margin: 5px; justify-content: center;"> <div style="color: black;"> Your Bitonic ID </div> <div> : {{teacherData.bitonicID}}</div></code>
+
+ </center>
+</div>
+
+<br>
+
+        <button class="btn btn-primary" type="submit">Get Students</button>
     </form>
 
 <div class="container">
@@ -128,23 +156,6 @@
     </ul>
 </div>
 
- 
-    <script>
-        function handleFileChange(files) {
-            var fileName = files[0].name;
-            document.getElementById('fileName').innerHTML = fileName;
-        }
-
-        function dropHandler(event) {
-            event.preventDefault();
-            var files = event.dataTransfer.files;
-            handleFileChange(files);
-        }
-
-        function dragOverHandler(event) {
-            event.preventDefault();
-        }
-    </script>
 {{>noFooter}}
 </body>
 </html>

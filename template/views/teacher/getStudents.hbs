@@ -19,25 +19,39 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <style>
-
+table * {
+    justify-content: center;
+    vertical-align: middle;
+}
 </style>
 
 <body>
     <!--? NAV BAR  -->
-    {{>adminNav}}
+    {{>teacherNav}}
+
+        <form action="attendance"  method="post" >
+<input type="hidden" name="len" value="{{result15.length}}">
+<input type="hidden" name="sub" value="{{sub}}">
+<input type="hidden" name="section" value="{{section}}">
+
+
 
 
     <div class="container d-flex-computer flex-wrap justify-content-center contain ">
 
-        <div class="box w-20 ani2">Total Teachers
-            <hr /><b style="text-transform: uppercase;">{{total.total}}</b>
+        <div class="box w-20 ani2 text-primary">Total Students
+            <hr /><b style="text-transform: uppercase;">{{result15.length}}</b>
         </div>
-        <div class="box w-20 ani2">Download Data
-            <hr /><b style="text-transform: uppercase;"><a href="teacher/downloadData"><button class="btn-primary btn w-50">Download</button></a></b>
+        <div class="box w-20 ani2 text-dark  ">Teacher
+            <hr />
+            <b style="text-transform: uppercase;">{{teacher}}</b>
         </div>
 
-        <div class="box w-20 ani2">Add Teacher 
-            <hr /><b style="text-transform: uppercase;"><a href="addTeacher"><button class="btn-primary btn w-50">Add</button></a></b>
+        <div class="box w-20 ani2 ">Subject
+            <hr /><b style="text-transform: uppercase;">{{sub}}</b>
+        </div>
+        <div class="box w-20 ani2 text-dark">Date
+            <hr /><b style="text-transform: uppercase;"><input class="btn " type="date" name="dat" id="dat"></b>
         </div>
     </div>
     <div class="container box " style="height: 50vh; overflow: scroll;">
@@ -48,45 +62,41 @@
 
             <thead>
                 <tr>
-                    <th class="ani1" scope="col">ID</th>
+                    <th class="ani1" scope="col">Roll NO</th>
                     <th class="ani1" scope="col">Img</th>
-                    <th class="ani2" scope="col">Handle</th>
                     <th class="ani2" scope="col">Name</th>
-                    <th class="ani3" scope="col">Standard</th>
-                    <th class="ani3" scope="col">Mentor Of</th>
+                    <th class="ani2" scope="col">Attend Lvl</th>
 
-                    <th class="ani3" scope="col">View</th>
-                    {{!-- <th class="ani4" scope="col">Update</th> --}}
-                    <th class="ani4" scope="col">Delete</th>
+                    <th class="ani2" scope="col">✅</th>
+                  
 
                 </tr>
             </thead>
             <tbody>
-
-                {{#each result8}}
+{{#each result15}}
                 <tr class="ani2">
-                    <th scope="row"><code class="code">{{this.teacherID}}</code></th>
-                    <td><img src="{{this.img}}" width="40" height="40"
-                            alt="DP"></td>
-                    <td>{{this.username}}</td>
-                    <td>{{this.teacherName}}</td>
-                    <td>{{this.standard}}</td>
-                    <td>{{this.teacherOf}}</td>
-                    <td><a href="viewTeacher?teacherID={{this.teacherID}}"><button class="btn btn-primary" style="width: 70px;">View</button></a></td>
-                    {{!-- <td><a href="updateTeacher?teacherID={{this.teacherID}}"><button class="btn btn-success" style="width: 70px;">Edit</button></a></td> --}}
-                    <td><a href="deleteTeacher?teacherID={{this.teacherID}}"><button class="btn btn-danger" style="width: 70px;">Delete</button></a></td>
+                  <td>{{this.rollno}}</td>
+                                 <td><img src="{{this.img}}" width="50px" alt="profile"></td>
+    <input type="hidden" name="{{this.rollno}}id" value="{{this.studentID}}" >
+                  <td>{{this.studentName}}</td>
+                  <td class="text-danger">Low</td>
+                  <td><input type="checkbox" name="{{this.rollno}}" id=""></td>
 
                 </tr>
-
-            {{/each}}
-
-
+{{/each}}  
             </tbody>
+
+
            <p style="color: red !important; font-weight: bolder;"> {{err}} </p>
 
         </table>
+<code>@--------------END--------------@</code>
 
     </div>
+    <center>
+        <button class="btn  btn-primary w-25" type="submit" style="justify-content: center; align-items: center !important; text-align: center !important;">Finalize</button>
+        </center>
+</form>
 
 
     {{>footer}}
@@ -100,6 +110,9 @@
         function oo() {
             document.getElementById("loading").style.display = "none";
         }
+
+
+        document.getElementById('dat').valueAsDate = new Date();
     </script>
 
 </body>

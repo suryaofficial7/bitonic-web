@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitonic</title>
-    <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitonic</title>
+  <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <style>
-  
+
 </style>
-<body>
-{{>nav}}
 
-<hr class="hr">
+<body style="display: block; margin: 0;padding: 0px;">
+  {{>nav}}
 
-<!--? CENTER IDEA -->
+  <hr class="hr">
+
+
+  <form class="my-form box ani1" id="pri" action="../auth/student" method="post" style="justify-content: center; text-align: center; margin: auto; margin-top: 5px;margin-bottom: 10px;">
+    <div class="login-welcome-row">
+      <a href="#" title="Logo">
+        <img src="../images/brand.png" alt="Logo" class="logo ani1" />
+      </a>
+
+      <h2 class="m-0">Contact Us&#x1F44F;</h2>
+
+      <p class="m-0">Please enter your Queries!</p>
+    </div>
+
+  
+
+
+ <div class="form-group col-md-12">
+
+        <input type="text" id="email" class="input_field" placeholder="Your Name" required name="fname" />
+      </div>
+    </div>
+
+
+     <div class="form-group col-md-12">
+
+        <input type="text" id="email" class="input_field" placeholder="Contact Number" required name="mob" />
+      </div>
+    </div>
+
+
+     <div class="form-group col-md-12">
+
+        <input type="text" id="email" class="input_field" placeholder="Your Email" required name="email" />
+      </div>
+    </div>
+
+
+     <div class="form-group col-md-12">
+
+        <input type="text" id="email" class="input_field" placeholder="Your Queries ....." required name="message" />
+      </div>
+    </div>
+
+
+    <button type="submit" class="my-form_button ani1">Submit</button>
+
+  </form>
+
+  <!--? CENTER IDEA -->
   <hr class="hr">
 
 
 
-{{>footer}}
+  {{>footer}}
 
 </body>
 
 <script>
-        
+
   function oo() {
-    document.getElementById("loading").style.display="none";
+    document.getElementById("loading").style.display = "none";
   }
 </script>
+
 </html>
