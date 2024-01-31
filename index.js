@@ -141,10 +141,7 @@ app.get("/login", (req, res) => {
 
 
 
-
-
-
-//? ===========================================================================================================
+//? =============================================================================================================================
 // ! [ STUDENTS :) ]
 app.get("/student/studentHomepage", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
@@ -551,7 +548,7 @@ app.get("/admin/students", (req, res) => {
     res.redirect("../../login");
   } else {
 
-conn.query(`select * from student`,function (err8 , result8, field ){
+conn.query(`select * from student where schoolID='${req.cookies.adminID}'`,function (err8 , result8, field ){
 
   if(err8){throw err8}
   else if(result8[0]==null){
@@ -564,8 +561,9 @@ conn.query(`select * from student`,function (err8 , result8, field ){
   else{
     console.log(result8);
 
-  conn.query(`select count(sid) as total from student `,function (err9 , result9, field2 ){
+  conn.query(`select count(sid) as total from student where schoolID='${req.cookies.adminID}' `,function (err9 , result9, field2 ){
     if(err9) throw err9
+    console.log(`qwertyuio ${result9[0]}`)
     res.render("admin/studentData",{result8:result8,total:result9[0]});
 
     // res.redirect("student/d");
@@ -584,7 +582,7 @@ app.get("/admin/requests", (req, res) => {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-
+//! ========================================================================================================================
 conn.query(`select * from queue where schoolId='${req.cookies.adminID}'`,function (err10 , result10, field ){
 
   if(err10){throw err10}
@@ -711,7 +709,7 @@ app.get("/sudoUser", (req, res) => {
 //? ===========================================================================================================
 // ! [ DOWNLOADS : )
 app.get("/admin/students/downloadData", (req, res) => {
-  conn.query(`select * from student`, function (err13, res13, field13) {
+  conn.query(`select * from student where schoolId='${req.cookies.adminID}'`, function (err13, res13, field13) {
     if (err13) {
       console.log(err13);
     } else {
@@ -739,7 +737,7 @@ app.get("/admin/students/downloadData", (req, res) => {
 });
 
 app.get("/admin/teacher/downloadData", (req, res) => {
-  conn.query(`select * from teacher`, function (err13, res13, field13) {
+  conn.query(`select * from teacher where workPlaceID='${req.cookies.adminID}'`, function (err13, res13, field13) {
     if (err13) {
       console.log(err13);
     } else {
@@ -1170,7 +1168,7 @@ app.get("/admin/deleteTeacher",(req,res)=>{
 // ! [ Lising to port ]
 app.listen(port,  async () => {
   console.log(`----------------------------------------------------`);
-  const aa = await bcrypt.hash("1234567",10);
+  const aa = await bcrypt.hash("pwd",10);
   console.log(aa);
 
 

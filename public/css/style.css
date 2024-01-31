@@ -4,13 +4,21 @@
 /* #ff6400 */
 /* #ff4a00 */
 /* #c3dfda */
-
+@font-face {
+  font-family: 'Penta';
+  src: url('../fonts/Penta.ttf');
+}
 .icon-small{
   width: 25px !important;
   height: 25px !important;
 }
 .mob-block{
   display: flex !important;
+}
+.penta{
+font-family:Penta !important;
+font-weight: bolder;
+
 }
 
 .cen td{
