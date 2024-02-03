@@ -23,6 +23,27 @@
 .ani5 {
   animation: scaling 2s ease-in-out;
 }
+
+.ani6 {
+  animation: scaling 2.2s ease-in-out;
+}
+
+
+.ani7 {
+  animation: scaling 2.4s ease-in-out;
+}
+
+.ani8 {
+  animation: scaling 2.6s ease-in-out;
+}
+
+.ani9 {
+  animation: scaling 2.8s ease-in-out;
+}
+
+.ani10 {
+  animation: scaling 3s ease-in-out;
+}
 @keyframes scaling {
   0% {
     opacity: 0;

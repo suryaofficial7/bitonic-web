@@ -433,8 +433,14 @@ console.log("Added");
 
 
 
-res.send(req.body);
-
+res.send(`<h2 style="color:green;">Attendance Added Succesfully</h2><br> <a href='teacherHomepage'><button> back </button></a>
+<script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>`);
 
 })
 
@@ -1159,8 +1165,11 @@ app.get("/admin/deleteTeacher",(req,res)=>{
   })
   
 
+  //! ===========================================================================================================
 
-
+app.get("/faq",(req,res)=>{
+  res.render("bitonic/faq");
+})
 
 
 

@@ -12,7 +12,7 @@
     />
 
  <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
@@ -273,30 +273,66 @@ box-shadow:  5px 5px 10px #bebebe,
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
+
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+$id = getCookie('studentID')
+fetch(`http://localhost/bitonicapi/studentAttendance.php?id=${$id}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data received:', data);
+    // console.log('Data received:', data);
+  
+
+
+
+
+
+
+
     const ctx = document.getElementById('myChart');
     const ctx3 = document.getElementById('myChart3');
     const ctx4 = document.getElementById('myChart4');
-{{#if graphData}}
-const jun = `{{graphData.jun}}`;
-const jul = `{{graphData.jul}}`;
-const aug = `{{graphData.aug}}`;
-const sep = `{{graphData.sep}}`;
-const oct = `{{graphData.oct}}`;
-const nov = `{{graphData.nov}}`;
-const dec = `{{graphData.dec}}`;
-const jan = `{{graphData.jan}}`;
-const feb = `{{graphData.feb}}`;
-const mar = `{{graphData.mar}}`;
 
-const apr = `{{graphData.apr}}`;
-const may = `{{graphData.may}}`;
-const totallec =`{{graphData.totallec}}`;
-const presentlec =`{{graphData.presentlec}}`;
-const absentlec =`{{graphData.absentlec}}`;
+    
+const jan =  data['totalLec'][0]==undefined?0:data['totalLec'][0]['present'] ; 
+const feb =  data['totalLec'][1]==undefined?0:data['totalLec'][1]['present'] ; 
+const  mar = data['totalLec'][2]==undefined?0:data['totalLec'][2]['present'] ; 
+const  apr = data['totalLec'][3]==undefined?0:data['totalLec'][3]['present'] ; 
+const  may = data['totalLec'][4]==undefined?0:data['totalLec'][4]['present'] ; 
+const  jun = data['totalLec'][5]==undefined?0:data['totalLec'][5]['present'] ; 
+const jul =  data['totalLec'][6]==undefined?0:data['totalLec'][6]['present'] ; 
+const  aug = data['totalLec'][7]==undefined?0:data['totalLec'][7]['present'] ; 
+const  sep = data['totalLec'][8]==undefined?0:data['totalLec'][8]['present'] ; 
+const  oct = data['totalLec'][9]==undefined?0:data['totalLec'][9]['present'] ; 
+const  nov = data['totalLec'][10]==undefined?0:data['totalLec'][10]['present'] ; 
+const dec =  data['totalLec'][11]==undefined?0:data['totalLec'][11]['present'] ; 
+
+const totallec   =data['getLec'];
+const presentlec =data['totalPresent'];
+const absentlec  =data['totalAbsent'];
 
 
 
-{{/if}}
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -379,6 +415,12 @@ const absentlec =`{{graphData.absentlec}}`;
         }
       }
     });
+
+
+    })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
   </script>
   </body>
 </html>
