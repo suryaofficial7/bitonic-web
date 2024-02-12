@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get User IP in JS</title>
+</head>
+
+<body>
+    <h1>User's IP Address</h1>
+    <p id="userIp"></p>
+
+    <script>
+        // Make a request to ipinfo.io to get the user's IP address
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userIp').innerHTML = `Your IP address is ${data.ip}`;
+            })
+            .catch(error => {
+                console.error('Error fetching IP address:', error);
+            });
+    </script>
+</body>
+
+</html>

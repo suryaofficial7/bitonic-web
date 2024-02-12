@@ -8,10 +8,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/responsive.css" />
+    {{!-- <link rel="stylesheet" href="/css/responsive.css" /> --}}
     <link rel="stylesheet" href="/css/animation.css" />
 
     <link
@@ -32,7 +33,55 @@
   </head>
   <body>
     {{>studentNav}}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 ani1">PDF Files</h2>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <ul class="list-group">
+                    <!-- List of PDF Files -->
+                    <li class="ani2 list-group-item d-flex justify-content-between align-items-center">
+                       <div><img src="pdf.png" width="30" style="margin: 0 !important; padding: 0 !important;" alt=""> Tech knolwedge unit 1 chapter 3</div>
+                        <div class="btn-group" role="group">
+                            <button class="btn-sm btn-success" onclick="openFile('file1.pdf')">Open</button>
+                            <button class="btn-sm btn-info" onclick="downloadFile('file1.pdf')">Download</button>
+                        </div>
+                    </li>
+<br>
+                    <li class="ani3 list-group-item d-flex justify-content-between align-items-center">
+                     
+                       <div><img src="pdf.png" width="30" style="margin: 0 !important; padding: 0 !important;" alt="">    Web development Introduction</div>
 
+                        <div class="btn-group" role="group">
+                            <button class="btn-sm btn-success" onclick="openFile('file2.pdf')">Open</button>
+                            <button class="btn-sm btn-info" onclick="downloadFile('file2.pdf')">Download</button>
+                        </div>
+                    </li>
+                    <!-- Add more list items for additional files -->
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- FileSaver.js for downloading files -->
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js"></script>
+
+    <script>
+        function openFile(filePath) {
+            // You can implement your own logic to open the file,
+            // such as displaying it on the page or redirecting to a viewer.
+            alert(`Opening the file: ${filePath}`);
+        }
+
+        function downloadFile(filePath) {
+            saveAs(filePath, 'downloaded_file.pdf');
+        }
+    </script>
 
 
 

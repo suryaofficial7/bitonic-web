@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>History</title>
+    <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/responsive.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom futuristic table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            /* margin: 10px 0; */
+            /* font-size: 16px; */
+        }
+
+        th, td {
+            /* padding: 15px; */
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff6600d8 ;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+tr{
+    margin: 0 !important;padding: 0 !important;
+}
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+table *{
+    vertical-align: middle !important;
+}
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .delete-btn:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5 ani2">
+        <h2 class="text-center mb-4">Futuristic Table</h2>
+        <table class="table table-hover ani2">
+            <thead>
+                <tr >
+                    <th>Data</th>
+                    <th>Day</th>
+                    <th>Time</th>
+
+                    <th>Unique Code</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12/02/2024</td>
+                    <td>Tuesday</td>
+                    <td>10:00 am</td>
+
+                    <td><code>zX12Qx</code></td>
+                    <td><a href="deleteAttendance?id=zX12Qx"><button class="btn btn-danger delete-btn">Delete</button></a></td>
+
+                </tr>
+                <tr>
+                    <td>11/02/2024</td>
+                    <td>Monday</td>
+                    <td>12:12 am</td>
+                    <td><code>cF12d0</code></td>
+
+                    <td><a href="deleteAttendance?id=cF12d0"><button class="btn btn-danger delete-btn">Delete</button></a></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

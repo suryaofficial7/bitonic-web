@@ -68,7 +68,7 @@
 {{#if result4}}
       <div class="box w-20 ani2">Student Name<hr /><b style="text-transform: uppercase;">{{result4.studentName}}</b></div>
       <div class="box w-20 ani2">Student OF<hr /><b style="text-transform: uppercase;">{{result4.std}}</b></div>
-      <div class="box w-20 ani2">Total Attandance<hr /><b>95.00%</b></div>
+      <div class="box w-20 ani2">Total Attandance<hr /><b id="percent"></b></div>
       <div class="box w-20 ani2">Student ID<hr /><b><span class="code">{{result4.studentID}}</span></b></div>
 {{/if}}
     </div>
@@ -332,8 +332,18 @@ const totallec   =data['getLec'];
 const presentlec =data['totalPresent'];
 const absentlec  =data['totalAbsent'];
 
+const percent = (presentlec/totallec)*100;
+document.getElementById("percent").innerText=(presentlec/totallec)*100+"%";
 
+console.log(percent);
+if(percent>=60){
+document.getElementById("percent").style.color="green";
 
+}
+else{
+document.getElementById("percent").style.color="red";
+
+}
     new Chart(ctx, {
       type: 'bar',
       data: {

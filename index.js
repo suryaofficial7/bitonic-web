@@ -14,6 +14,7 @@ const fs = require('fs');
 var nodemailer = require('nodemailer');
 const cc = require('json2csv');
 const multer  = require('multer')
+const http = require("http");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -142,7 +143,7 @@ app.get("/login", (req, res) => {
 
 
 //? =============================================================================================================================
-// ! [ STUDENTS :) ]
+// ! [ @STUDENTS :) ]
 app.get("/student/studentHomepage", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
   let studentID = req.cookies["studentID"];
@@ -246,18 +247,7 @@ app.get("/student/report", (req, res) => {
   }
 });
 
-app.get("/student/sms", (req, res) => {
-  let bitonicID = req.cookies["bitonicID"];
 
-  if (bitonicID == null) {
-    // res.send("bad");
-    res.redirect("../../login");
-  } else {
-    res.render("student/studentSms");
-
-    // res.redirect("student/d");
-  }
-});
 
 app.get("/student/activate", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
@@ -274,11 +264,62 @@ app.get("/student/activate", (req, res) => {
 
 
 
+// @calendar
+app.get("/student/calender", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/calender");
+
+    // res.redirect("student/d");
+  }
+});
+
+// @changepwd
+app.get("/student/changePwd", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/changePwd");
+
+    // res.redirect("student/d");
+  }
+});
 
 
+// @RESULT
+app.get("/student/result", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
 
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/result");
 
+    // res.redirect("student/d");
+  }
+});
 
+// @Library
+app.get("/student/library", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("student/library");
+
+    // res.redirect("student/d");
+  }
+});
 
 
 
@@ -287,7 +328,7 @@ app.get("/student/activate", (req, res) => {
 
 
 //? ===========================================================================================================
-// ! [ Teachers  ]
+// ! [ @Teachers  ]
 app.get("/teacher/teacherHomepage", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
   let teacherID = req.cookies["teacherID"];
@@ -385,6 +426,18 @@ app.get("/teacher/addAttendance",(req,res)=>{
 })
 
 
+app.get("/teacher/attendanceHistory", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+
+  if (bitonicID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    res.render("teacher/attendanceHistory");
+
+    // res.redirect("student/d");
+  }
+});
 
 
 
@@ -433,14 +486,15 @@ console.log("Added");
 
 
 
-res.send(`<h2 style="color:green;">Attendance Added Succesfully</h2><br> <a href='teacherHomepage'><button> back </button></a>
-<script type="text/javascript">
-    window.history.forward();
-    function noBack()
-    {
-        window.history.forward();
-    }
-</script>`);
+// res.send(`<h2 style="color:green;">Attendance Added Succesfully</h2><br> <a href='teacherHomepage'><button> back </button></a>
+// <script type="text/javascript">
+//     window.history.forward();
+//     function noBack()
+//     {
+//         window.history.forward();
+//     }
+// </script>`);
+res.send(req.body);
 
 })
 
@@ -703,7 +757,12 @@ app.get("/sudoUser", (req, res) => {
 
 
 
+// !==========================================================================================================
+// Forget pwd
 
+app.get("/common/forgotpwd",(req,res)=>{
+  res.send("Under Construction");
+})
 
 
 
