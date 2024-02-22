@@ -1,27 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get User IP in JS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Student Admission Form</title>
 </head>
-
 <body>
-    <h1>User's IP Address</h1>
-    <p id="userIp"></p>
 
-    <script>
-        // Make a request to ipinfo.io to get the user's IP address
-        fetch('https://ipinfo.io/json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('userIp').innerHTML = `Your IP address is ${data.ip}`;
-            })
-            .catch(error => {
-                console.error('Error fetching IP address:', error);
-            });
-    </script>
+<div class="container mt-5">
+  <h2>Student Admission Form</h2>
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="studentID">Student ID</label>
+        <input type="text" class="form-control" id="studentID" placeholder="Student ID">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="studentName">Student Name</label>
+        <input type="text" class="form-control" id="studentName" placeholder="Student Name">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="contactNo">Contact Number</label>
+        <input type="text" class="form-control" id="contactNo" placeholder="Contact Number">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dob">Date of Birth</label>
+        <input type="date" class="form-control" id="dob">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="img">Student Image</label>
+        <input type="file" class="form-control-file" id="img">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fees">Fees</label>
+        <input type="text" class="form-control" id="fees" placeholder="Fees">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="section">Section</label>
+        <input type="text" class="form-control" id="section" placeholder="Section">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="rollno">Roll Number</label>
+        <input type="text" class="form-control" id="rollno" placeholder="Roll Number">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="schoolID">School ID</label>
+        <input type="text" class="form-control" id="schoolID" placeholder="School ID">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="active">Active</label>
+        <select id="active" class="form-control">
+          <option selected>Choose...</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
 </body>
-
 </html>

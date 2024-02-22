@@ -503,11 +503,11 @@ res.send(req.body);
 
 app.post("/teacher/getStudents",(req,res)=>{
 
-  conn.query(`select * from student where std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc `,function(err15,result15,field){
+  conn.query(`select * from student where section='${req.body.section}' and std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc `,function(err15,result15,field){
 if(err15)throw err15
 
 console.log(result15[0]);
-    console.log(`select * from student where std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'`);
+    // console.log(`select * from student where std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'`);
     res.render("teacher/getStudents",{result15:result15,teacher:req.body.teacher,sub:req.body.subject,section:req.body.section});
   })
 })
@@ -694,7 +694,29 @@ app.get("/admin/addTeacher", (req, res) => {
 });
 
 
+app.get("/admin/addStudent", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
 
+
+
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+
+    if(req.query.mes!=null){
+      res.render("admin/addStudent",{mes:"succes"});
+
+  
+    }else{
+
+    res.render("admin/addStudent");
+  }
+    // res.redirect("student/d");
+  }
+});
 
 
 
