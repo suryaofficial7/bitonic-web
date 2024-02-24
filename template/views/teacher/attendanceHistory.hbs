@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>History</title>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/style.css"> 
+
   <link rel="stylesheet" href="/css/responsive.css">
+<link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -61,36 +64,40 @@ table *{
 
 <body>
     <div class="container mt-5 ani2">
-        <h2 class="text-center mb-4">Futuristic Table</h2>
+        <h2 class="text-center mb-4">Attendance History</h2>
         <table class="table table-hover ani2">
             <thead>
                 <tr >
                     <th>Data</th>
-                    <th>Day</th>
-                    <th>Time</th>
+                    {{!-- <th>Day</th> --}}
+                    {{!-- <th>Time</th> --}}
 
                     <th>Unique Code</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>12/02/2024</td>
-                    <td>Tuesday</td>
-                    <td>10:00 am</td>
 
-                    <td><code>zX12Qx</code></td>
-                    <td><a href="deleteAttendance?id=zX12Qx"><button class="btn btn-danger delete-btn">Delete</button></a></td>
+                {{#each attendance}}
+                <tr>
+                    <td>{{this.date}}</td>
+                    {{!-- <td>Tuesday</td> --}}
+                    {{!-- <td>10:00 am</td> --}}
+
+                    <td><code><b>{{this.attendanceID}}</b></code></td>
+                    <td><a href="deleteAttendance?id={{this.attendanceID}}"><button class="btn btn-danger delete-btn">Delete</button></a></td>
 
                 </tr>
-                <tr>
+
+                {{/each}}
+                {{!-- <tr>
                     <td>11/02/2024</td>
                     <td>Monday</td>
                     <td>12:12 am</td>
                     <td><code>cF12d0</code></td>
 
                     <td><a href="deleteAttendance?id=cF12d0"><button class="btn btn-danger delete-btn">Delete</button></a></td>
-                </tr>
+                </tr> --}}
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
