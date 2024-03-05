@@ -116,31 +116,10 @@ app.get("/student/studentHomepage", (req, res) => {
         if (result4[0] == null) {
           res.redirect("../../");
         } else {
-          console.log("___________________________________1");
-          console.log(result4);
-          const graphData = [
-            {
-              jun: 10,
-              jul: 20,
-              aug: 30,
-              sep: 40,
-              oct: 50,
-              nov: 60,
-              dec: 70,
-              jan: 80,
-              feb: 90,
-              mar: 100,
-              apr: 110,
-              may: 120,
-              totallec: 200,
-              presentlec: 120,
-              absentlec: 80,
-            },
-          ];
+          
 
           res.render("student/studentHomepage", {
-            result4: result4[0],
-            graphData: graphData[0],
+            result4: result4[0]
           });
         }
       }
@@ -354,7 +333,14 @@ app.get("/teacher/addAttendance", (req, res) => {
       if (err8) throw err8;
       console.log(result8);
 
-      res.render("teacher/addAttendance", { teacherData: result8[0] });
+      conn.query(`select * from csd where tid='${req.cookies.teacherID}'`,function(err43,res43,field43){
+
+
+        res.render("teacher/addAttendance", { teacherData: result8[0],teacherData2:res43 });
+
+      })
+
+
     }
   );
 });
@@ -379,21 +365,19 @@ app.get("/teacher/attendanceHistory", (req, res) => {
   }
 });
 
-app.get("/teacher/deleteAttendance",(req,res)=>{
+app.get("/teacher/deleteAttendance", (req, res) => {
   let AttendanceID = req.query.id;
-  conn.query(`delete from attendance where attendanceID='${AttendanceID}'`,function(err18,result18,field){
-    if(err18){
-res.json({"mess":"Some Error Occured"});
+  conn.query(
+    `delete from attendance where attendanceID='${AttendanceID}'`,
+    function (err18, result18, field) {
+      if (err18) {
+        res.json({ mess: "Some Error Occured" });
+      } else {
+        res.redirect("attendanceHistory");
+      }
     }
-    else{
-    res.redirect("attendanceHistory");
-    }
-  })
-})
-
-
-
-
+  );
+});
 
 app.post("/teacher/attendance", (req, res) => {
   const dat = req.body["dat"];
@@ -443,13 +427,14 @@ app.post("/teacher/attendance", (req, res) => {
 });
 
 app.post("/teacher/getStudents", (req, res) => {
+  // res.json(req.body);
   conn.query(
     `select * from student where section='${req.body.section}' and std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc `,
     function (err15, result15, field) {
       if (err15) throw err15;
 
       console.log(result15[0]);
-      // console.log(`select * from student where std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'`);
+      console.log(`select * from student where section='${req.body.section}' and std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc '`);
       res.render("teacher/getStudents", {
         result15: result15,
         teacher: req.body.teacher,
@@ -479,7 +464,7 @@ app.get("/admin/adminHomepage", (req, res) => {
           console.log("___________________________________1");
           console.log(result4);
           conn.query(
-            `SELECT (SELECT COUNT(tid) FROM teacher where workPlaceID='${req.cookies.adminID}') AS teacher,(SELECT COUNT(sid) FROM student where schoolID='${req.cookies.adminID}') AS student , (SELECT COUNT(qid) FROM queue where schoolId='${req.cookies.adminID}') as queue FROM dual;`,
+            `SELECT (SELECT COUNT(tid) FROM teacher where workPlaceID='${req.cookies.adminID}') AS teacher,(SELECT COUNT(sid) FROM student where schoolID='${req.cookies.adminID}') AS student  FROM dual;`,
             (err23, result23, field) => {
               if (err23) {
                 console.log(err23);
@@ -622,6 +607,27 @@ app.get("/admin/addTeacher", (req, res) => {
   }
 });
 
+app.get("/admin/addSCD", (req, res) => {
+  let bitonicID = req.cookies["bitonicID"];
+  let adminID = req.cookies["adminID"];
+
+  if (bitonicID == null || adminID == null) {
+    // res.send("bad");
+    res.redirect("../../login");
+  } else {
+    conn.query(`select * from teacher where workPlaceID='${req.cookies['adminID']}'` , function(err41,result41,field45){
+
+if(err41){
+  console.log(err41);
+}else{
+      res.render("admin/addSCD",{res41:result41});
+
+}
+    });
+  }
+  // res.redirect("student/d");
+});
+
 app.get("/admin/addStudent", (req, res) => {
   let bitonicID = req.cookies["bitonicID"];
   let adminID = req.cookies["adminID"];
@@ -664,11 +670,19 @@ app.get("/teacher/teacherLogin", (req, res) => {
 });
 
 app.get("/admin/adminLogin", (req, res) => {
-  res.render("admin/adminLogin");
+  if (req.cookies["adminID"] != null) {
+    res.redirect("adminHomepage");
+  } else {
+    res.render("admin/adminLogin");
+  }
 });
 
 app.get("/sudoUser", (req, res) => {
-  res.render("sudoUser/sudoUserLogin");
+  res.render("sudoUser/log");
+});
+
+app.get("/sudoUser/menu", (req, res) => {
+  res.render("sudoUser/menu");
 });
 
 // !==========================================================================================================
@@ -940,24 +954,24 @@ app.post("/insert/addTeacher", upload.single("avatar"), async (req, res) => {
   console.log(adminID);
 
   conn.query(
-    `INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID, teacherOf, mob, workingAt, posting, section,workPlaceID,standard) VALUES (NULL, '${bID}', '${
-      req.body.teacherName
-    }', '${req.body.username}', '${req.body.email}', '${p}', '${
-      req.body.qualification
-    }', '${req.body.dob}', '${
-      "/uploads/" + req.file.filename
-    }', '${bID.substring(0, 16)}', '${req.body.teacherOf}', '${
-      req.body.mobileNumber
-    }', '${req.body.workingAt}', '${req.body.posting}', '${
-      req.body.section
-    }','${adminID}','${req.body.standard}');`,
+    `INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID,  mob, workingAt, posting,workPlaceID) VALUES (NULL, '${bID}', '${req.body.teacherName
+    }', '${req.body.username}', '${req.body.email}', '${p}', '${req.body.qualification
+    }', '${req.body.dob}', '${"/uploads/" + req.file.filename
+    }', '${bID.substring(0, 16)}',  '${req.body.mobileNumber}', '${req.body.workingAt
+    }', '${req.body.posting}', '${adminID}')`,
     (err15, res15, field) => {
-      if (err15) throw err15;
+      if(err15){
+res.json({"your Request": "Denied Plese contact Admin Error in Sql Querry"});
+// console.log(err15);
+      }
+      else{
 
       res.redirect("../admin/addTeacher?mes=success");
     }
+    }
   );
 });
+
 
 app.post("/teacher/uploads", upload.single("files"), async (req, res) => {
   console.log("============================");
@@ -976,6 +990,20 @@ app.post("/teacher/uploads", upload.single("files"), async (req, res) => {
   // res.send("done");
   // console.log(req.files);
   // })
+});
+
+app.post("/admin/addSCD", (req, res) => {
+  // res.json(req.body);
+
+  conn.query(`INSERT INTO csd (sid, subjectName, tid, standard, divi) VALUES (NULL, '${req.body['subject']}', '${req.body['teacherID']}', '${req.body['std']}', '${req.body['division']}');`, function(err42,res42){
+
+    if(err42){
+      console.log(err42);
+    }
+    else{
+    res.render("admin/addSCD",{mess:"added"});
+    }
+  })
 });
 
 // ! DELETING

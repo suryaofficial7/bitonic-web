@@ -20,6 +20,13 @@
 </head>
 <style>
 
+ * {
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+    justify-content: center;
+    align-self: center;
+}
 </style>
 
 <body>
@@ -39,21 +46,25 @@
         <div class="box w-20 ani2">Add Teacher 
             <hr /><b style="text-transform: uppercase;"><a href="addTeacher"><button class="btn-primary btn w-50">Add</button></a></b>
         </div>
+
+         <div class="box w-20 ani2">Add SCD
+            <hr /><b style="text-transform: uppercase;"><a href="addSCD"><button class="btn-primary btn w-50">Add</button></a></b>
+        </div>
     </div>
-    <div class="container box " style="height: 50vh; overflow: scroll;">
-        <table class="table ani">
+    <div class="container  box  " style="height: 50vh; overflow: scroll;">
+        <table class="table ani ">
             {{!-- {{#if err}} --}}
             
              {{!-- {{/if}} --}}
 
             <thead>
                 <tr>
-                    <th class="ani1" scope="col">ID</th>
                     <th class="ani1" scope="col">Img</th>
+                    <th class="ani1" scope="col">ID</th>
                     <th class="ani2" scope="col">Handle</th>
                     <th class="ani2" scope="col">Name</th>
-                    <th class="ani3" scope="col">Standard</th>
-                    <th class="ani3" scope="col">Mentor Of</th>
+                    {{!-- <th class="ani3" scope="col">Standard</th> --}}
+                    {{!-- <th class="ani3" scope="col">Mentor Of</th> --}}
 
                     {{!-- <th class="ani3" scope="col">View</th> --}}
                     {{!-- <th class="ani4" scope="col">Update</th> --}}
@@ -65,13 +76,12 @@
 
                 {{#each result8}}
                 <tr class="ani2">
+                    <td><img src="{{this.img}}" width="70" height="70" alt="DP"></td>
                     <th scope="row"><code class="code">{{this.teacherID}}</code></th>
-                    <td><img src="{{this.img}}" width="40" height="40"
-                            alt="DP"></td>
                     <td>{{this.username}}</td>
                     <td>{{this.teacherName}}</td>
-                    <td>{{this.standard}}</td>
-                    <td>{{this.teacherOf}}</td>
+                    {{!-- <td>{{this.standard}}</td> --}}
+                    {{!-- <td>{{this.teacherOf}}</td> --}}
                     {{!-- <td><a href="viewTeacher?teacherID={{this.teacherID}}"><button class="btn btn-primary" style="width: 70px;">View</button></a></td> --}}
                     {{!-- <td><a href="updateTeacher?teacherID={{this.teacherID}}"><button class="btn btn-success" style="width: 70px;">Edit</button></a></td> --}}
                     <td><a href="deleteTeacher?teacherID={{this.teacherID}}"><button class="btn btn-danger" style="width: 70px;">Delete</button></a></td>

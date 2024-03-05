@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitonic@Admin | Add Teachers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon">
+  <link rel="stylesheet" href="/css/form.css">
+  {{!-- <link rel="stylesheet" href="/css/style.css"> --}}
+
+  {{!-- <link rel="stylesheet" href="/css/responsive.css"> --}}
+  <link rel="stylesheet" href="/css/animation.css">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Teacher Information Form</title>
+</head>
+<style>
+  .my-form {
+justify-self: center !important;
+width: 70% !important;
+justify-content: space-around !important;
+padding: 20px !important;
+  border-radius: 0.5rem;
+
+    background-color: white;
+margin: 0 !important; 
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+margin: auto !important;
+}
+body{
+   background-repeat: no-repeat;
+   background-size: cover;
+   /* border: 2px solid red !important; */
+   height: 100%;
+    /* background-image: linear-gradient(#0bc8d2,#f5d0ae); */
+    /* background-image: linear-gradient(rgb(242 243 252)); */
+
+    /* background-color: rgb(56 74 254) !important; */
+
+  background: #f1f1f1!important;
+
+    /* overflow: hidden; */
+    user-select: none;
+}
+.fig{
+justify-content: center !important;
+padding: 10px !important;
+margin: auto !important;
+width: 100% !important;
+}
+</style>
+<body>
+
+<div class="container mt-5 fig">
+{{#if mess}}
+  <div class="alert alert-success" role="alert">
+  Subject Assigned Succesfully...
+</div>
+<br>
+<br>
+<br>
+
+{{/if}}
+
+  <h2 class="text-center">Teacher Registration</h2>
+  <br>
+  <form class="my-form ani1 justify-content-center w-auto" style="justify-content: center !important;" action="addSCD" method="post" >
+
+
+    <div class="form-row ani1">
+            <div class="form-group col-md-6">
+        <label for="">Select the Teacher</label>
+<select class="form-group col-md-12" name="teacherID" id="">
+  {{#each res41}}
+    <option class="form-control btn p-4" value="{{this.teacherID}}">{{this.teacherName}} - {{this.teacherID}} </option>
+    {{/each}}
+</select>
+</div>
+</div>
+
+    <div  class="form-row ani1">
+
+      <div class="form-group col-md-6">
+        <label for="teacherName">Standard</label>
+        <input type="text" class="form-control" id="teacherName" name="std" required>
+      </div>
+      
+      
+
+    
+    </div>
+
+    <div class="form-row ani1">
+      <div class="form-group col-md-6">
+        <label for="username">DIV</label>
+        <input type="text" class="form-control" id="username" name="division" required>
+      </div>
+    </div>
+
+
+
+<div class="form-row ani1">
+      <div class="form-group col-md-6">
+        <label for="username">Subject</label>
+        <input type="text" class="form-control" id="username" name="subject" required>
+      </div>
+    </div>
+    
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+</body>
+
+</body>
+</html>
