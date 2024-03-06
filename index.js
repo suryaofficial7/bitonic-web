@@ -26,7 +26,19 @@ const storage = multer.diskStorage({
   },
 });
 
+const studentsUploads = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "/public/studentsUploads"));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + "-" + file.originalname);
+  },
+});
+
 const upload = multer({ storage: storage });
+const upload2 = multer({ storage: studentsUploads });
+
 //? ===========================================================================================================
 // ! Initializations
 const app = express();
@@ -116,10 +128,8 @@ app.get("/student/studentHomepage", (req, res) => {
         if (result4[0] == null) {
           res.redirect("../../");
         } else {
-          
-
           res.render("student/studentHomepage", {
-            result4: result4[0]
+            result4: result4[0],
           });
         }
       }
@@ -333,14 +343,15 @@ app.get("/teacher/addAttendance", (req, res) => {
       if (err8) throw err8;
       console.log(result8);
 
-      conn.query(`select * from csd where tid='${req.cookies.teacherID}'`,function(err43,res43,field43){
-
-
-        res.render("teacher/addAttendance", { teacherData: result8[0],teacherData2:res43 });
-
-      })
-
-
+      conn.query(
+        `select * from csd where tid='${req.cookies.teacherID}'`,
+        function (err43, res43, field43) {
+          res.render("teacher/addAttendance", {
+            teacherData: result8[0],
+            teacherData2: res43,
+          });
+        }
+      );
     }
   );
 });
@@ -434,7 +445,9 @@ app.post("/teacher/getStudents", (req, res) => {
       if (err15) throw err15;
 
       console.log(result15[0]);
-      console.log(`select * from student where section='${req.body.section}' and std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc '`);
+      console.log(
+        `select * from student where section='${req.body.section}' and std='${req.body.standard}' and schoolId='${req.cookies.schoolID}'  order by rollno asc '`
+      );
       res.render("teacher/getStudents", {
         result15: result15,
         teacher: req.body.teacher,
@@ -615,15 +628,16 @@ app.get("/admin/addSCD", (req, res) => {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-    conn.query(`select * from teacher where workPlaceID='${req.cookies['adminID']}'` , function(err41,result41,field45){
-
-if(err41){
-  console.log(err41);
-}else{
-      res.render("admin/addSCD",{res41:result41});
-
-}
-    });
+    conn.query(
+      `select * from teacher where workPlaceID='${req.cookies["adminID"]}'`,
+      function (err41, result41, field45) {
+        if (err41) {
+          console.log(err41);
+        } else {
+          res.render("admin/addSCD", { res41: result41 });
+        }
+      }
+    );
   }
   // res.redirect("student/d");
 });
@@ -636,8 +650,8 @@ app.get("/admin/addStudent", (req, res) => {
     // res.send("bad");
     res.redirect("../../login");
   } else {
-    if (req.query.mes != null) {
-      res.render("admin/addStudent", { mes: "succes" });
+    if (req.query.mess != null) {
+      res.render("admin/addStudent", { mess: "succes" });
     } else {
       res.render("admin/addStudent");
     }
@@ -949,29 +963,76 @@ app.post("/insert/addTeacher", upload.single("avatar"), async (req, res) => {
 
   const p = await bcrypt.hash(req.body.password, 10);
   const bID = "bitonic@tea-" + uuid.v4().substring(0, 15);
-  console.log(req.body);
   const adminID = req.cookies.adminID;
+  console.log(req.body);
   console.log(adminID);
 
   conn.query(
-    `INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID,  mob, workingAt, posting,workPlaceID) VALUES (NULL, '${bID}', '${req.body.teacherName
-    }', '${req.body.username}', '${req.body.email}', '${p}', '${req.body.qualification
-    }', '${req.body.dob}', '${"/uploads/" + req.file.filename
-    }', '${bID.substring(0, 16)}',  '${req.body.mobileNumber}', '${req.body.workingAt
+    `INSERT INTO teacher (tid, bitonicID, teacherName, username, email, pwd, qualification, dob, img, teacherID,  mob, workingAt, posting,workPlaceID) VALUES (NULL, '${bID}', '${
+      req.body.teacherName
+    }', '${req.body.username}', '${req.body.email}', '${p}', '${
+      req.body.qualification
+    }', '${req.body.dob}', '${
+      "/uploads/" + req.file.filename
+    }', '${bID.substring(0, 16)}',  '${req.body.mobileNumber}', '${
+      req.body.workingAt
     }', '${req.body.posting}', '${adminID}')`,
     (err15, res15, field) => {
-      if(err15){
-res.json({"your Request": "Denied Plese contact Admin Error in Sql Querry"});
-// console.log(err15);
+      if (err15) {
+        res.json({
+          "your Request": "Denied Plese contact Admin Error in Sql Querry",
+        });
+        console.log(err15);
+      } else {
+        res.redirect("../admin/addTeacher?mes=success");
       }
-      else{
-
-      res.redirect("../admin/addTeacher?mes=success");
-    }
     }
   );
 });
 
+//? ===========================================================================================================
+// ! [ Insert Teachers ]
+app.post(
+  "/insert/addStudent",
+  upload2.single("studentImg"),
+  async (req, res) => {
+    console.log("============================");
+
+    // Daataa
+    const uname = req.body["uname"];
+    const username = req.body["username"];
+    const email = req.body["email"];
+    const mob = req.body["mob"];
+    const dob = req.body["dob"];
+    const fees = req.body["fees"];
+    const std = req.body["std"];
+    const section = req.body["section"];
+    const rollno = req.body["rollno"];
+
+    let pwd = uname.substring(0,3)+123;
+    pwd = pwd.toLowerCase();
+
+    console.log(pwd);
+    const pwdHash = await bcrypt.hash(pwd, 10);
+    console.log(pwdHash);
+    const bitID = "bitonic@stu-" + uuid.v4();
+    const adminID = req.cookies.adminID;
+
+    conn.query(
+      `INSERT INTO student (sid, bitonicID, studentName, pwd, username, email, contactNo, active, studentID, std, img, fees, section, schoolID, rollno, dob) VALUES (NULL, '${bitID}' , '${uname}', '${pwdHash}', '${username}', '${email}', '${mob}', '9', '${bitID.substring(0,16)}',  '${std}', 'img', '${"/studentsUploads/" + req.file.filename}', '${section}','${adminID}', '${rollno}', '${dob}');`,
+      (err15, res15, field) => {
+        if (err15) {
+          res.json({
+            "your Request": "Denied Plese contact Admin Error in Sql Querry",
+          });
+          console.log(err15);
+        } else {
+          res.redirect("../admin/addStudent?mess=success",);
+        }
+      }
+    );
+  }
+);
 
 app.post("/teacher/uploads", upload.single("files"), async (req, res) => {
   console.log("============================");
@@ -995,15 +1056,16 @@ app.post("/teacher/uploads", upload.single("files"), async (req, res) => {
 app.post("/admin/addSCD", (req, res) => {
   // res.json(req.body);
 
-  conn.query(`INSERT INTO csd (sid, subjectName, tid, standard, divi) VALUES (NULL, '${req.body['subject']}', '${req.body['teacherID']}', '${req.body['std']}', '${req.body['division']}');`, function(err42,res42){
-
-    if(err42){
-      console.log(err42);
+  conn.query(
+    `INSERT INTO csd (sid, subjectName, tid, standard, divi) VALUES (NULL, '${req.body["subject"]}', '${req.body["teacherID"]}', '${req.body["std"]}', '${req.body["division"]}');`,
+    function (err42, res42) {
+      if (err42) {
+        console.log(err42);
+      } else {
+        res.render("admin/addSCD", { mess: "added" });
+      }
     }
-    else{
-    res.render("admin/addSCD",{mess:"added"});
-    }
-  })
+  );
 });
 
 // ! DELETING

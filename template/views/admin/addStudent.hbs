@@ -61,58 +61,70 @@ width: 100% !important;
 <body>
 
 <div class="container mt-5">
+  {{#if mess}}
+  <div class="alert alert-success" role="alert">
+  Student Added Successfully...
+</div>
+<br>
+<br>
+<br>
+
+{{/if}}
   <center><h2>Student Admission Form</h2></center>
-  <form class="my-form ani1" action="../insert/addTeacher" method="post"  enctype="multipart/form-data">
+  <form class="my-form ani1" action="../insert/addStudent" method="post"  enctype="multipart/form-data">
 
     <div class="form-row ani1">
       
       <div class="form-group col-md-12 ani1">
         <label for="studentName">Student Name</label>
-        <input required type="text" class="form-control" id="studentName" placeholder="Student Name">
+        <input required type="text" class="form-control" name="uname" id="studentName" placeholder="Student Name">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 ani2">
         <label for="username">Username</label>
-        <input required type="text" class="form-control" id="username" placeholder="Username">
+        <input required type="text" class="form-control" name="username" id="username" placeholder="Username">
       </div>
       <div class="form-group col-md-6 ani2">
         <label for="email">Email</label>
-        <input required type="email" class="form-control" id="email" placeholder="Email">
+        <input required type="email" name="email" class="form-control" id="email" placeholder="Email">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 ani3">
         <label for="contactNo">Contact Number</label>
-        <input required type="tel" class="form-control" id="contactNo" minlength="10" maxlength="10" placeholder="Contact Number">
+        <input required type="tel" class="form-control" name="mob" id="contactNo" minlength="10" maxlength="10" placeholder="Contact Number">
       </div>
       <div class="form-group col-md-6 ani3">
         <label for="dob">Date of Birth</label>
-        <input required type="date" class="form-control" id="dob">
+        <input required type="date" class="form-control" name="dob" id="dob">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6 ani4">
         <label for="img">Student Image</label>
-        <input required type="file" class="form-control-file" id="img">
+        <input  type="file" class="form-control-file" name="studentImg" id="img">
       </div>
        <div class="form-group col-md-6 ani6">
         <label for="active">Fees</label>
-        <select id="active" class="form-control">
-          <option selected>Choose...</option>
+        <select id="active" name="fees" class="form-control">
           <option value="1">Paid</option>
           <option value="0">UnPaid</option>
         </select>
       </div>
     </div>
     <div class="form-row">
-      <div class="form-group col-md-6 ani5">
-        <label for="section">Section</label>
-        <input required type="text" class="form-control" id="section" placeholder="Section">
+      <div class="form-group col-md-4 ani5">
+        <label for="section">Standard</label>
+        <input required type="text" class="form-control" id="" name="std" placeholder="Standard">
       </div>
-      <div class="form-group col-md-6 ani5">
+      <div class="form-group col-md-4 ani5">
+        <label for="section">Section</label>
+        <input required type="text" class="form-control" id="section" name="section" placeholder="Section">
+      </div>
+      <div class="form-group col-md-4 ani5">
         <label for="rollno">Roll Number</label>
-        <input required type="text" class="form-control" id="rollno" placeholder="Roll Number">
+        <input required type="text" class="form-control" id="rollno" name="rollno" placeholder="Roll Number">
       </div>
     </div>
     
