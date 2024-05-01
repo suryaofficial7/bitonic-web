@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitonic@Admin | All Teachers</title>
+    <title>Bitonic@Admin | GET TEACHERS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,12 +27,11 @@ table * {
 
 <body>
     <!--? NAV BAR  -->
-    {{>teacherNav}}
+    {{!-- {{>teacherNav}} --}}
+  {{>adminNav}}
+
 
         <form action="attendance"  method="post" >
-<input type="hidden" name="len" value="{{result15.length}}">
-<input type="hidden" name="sub" value="{{sub}}">
-<input type="hidden" name="section" value="{{section}}">
 
 
 
@@ -42,14 +41,9 @@ table * {
         <div class="box w-20 ani2 text-primary">Total Students
             <hr /><b style="text-transform: uppercase;">{{result15.length}}</b>
         </div>
-        <div class="box w-20 ani2 text-dark  ">Teacher
-            <hr />
-            <b style="text-transform: uppercase;">{{teacher}}</b>
-        </div>
+       
 
-        <div class="box w-20 ani2 ">Subject
-            <hr /><b style="text-transform: uppercase;">{{sub}}</b>
-        </div>
+       
         <div class="box w-20 ani2 text-dark">Date
             <hr /><b style="text-transform: uppercase;"><input class="btn " type="date" name="dat" id="dat"></b>
         </div>
@@ -75,11 +69,11 @@ table * {
             <tbody>
 {{#each result15}}
                 <tr class="ani2">
-                  <td>{{this.rollno}}</td>
+                  <td>{{this.teacherID}}</td>
                                  <td><img src="{{this.img}}" width="50px" alt="profile"></td>
-    <input type="hidden" name="{{this.rollno}}id" value="{{this.studentID}}" >
+    <input type="hidden" name="{{this.teacherID}}id" value="{{this.teacherID}}" >
     
-                  <td>{{this.studentName}}</td>
+                  <td>{{this.teacherName}}</td>
                   <td class="text-danger">Low</td>
                   <td><input type="checkbox" name="{{this.rollno}}" id=""></td>
 

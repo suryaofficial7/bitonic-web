@@ -1,0 +1,440 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitonic@student | Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+ <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="/images/fav.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel="stylesheet" href="/css/animation.css" />
+
+   
+  </head>
+  <style>
+
+  </style>
+  <body >
+    <!--? NAV BAR  -->
+
+    <!--? CENTER IDEA -->
+
+    <nav class="navbar w-100 container ani1">
+
+      <ul class="w-100">
+
+        <div
+          class="w-100 d-flex text-center align-content-center justify-content-center"
+        >
+
+          <li>
+            <img
+              src="{{result4.img}}"
+              class="circle"
+              width="50px"
+              alt="profile"
+            />
+
+            <!-- <img src="brand.png" height="70px" width="70px" alt="" id="brand"> -->
+          </li>
+          <li class="m-2 pl-3 font-bold w-auto">
+             {{result4.studentName}}
+          </li>
+
+        </div>
+
+      </ul>
+
+    </nav>
+
+    <hr class="hr" />
+    <div
+      class="container d-flex-computer flex-wrap justify-content-center contain"
+    >
+{{#if result4}}
+      <div class="box w-20 ani2">Student Name<hr /><b style="text-transform: uppercase;">{{result4.studentName}}</b></div>
+      <div class="box w-20 ani2">Student OF<hr /><b style="text-transform: uppercase;">{{result4.std}}</b></div>
+      <div class="box w-20 ani2">Total Attandance<hr /><b id="percent"></b></div>
+      <div class="box w-20 ani2">Student ID<hr /><b><span class="code">{{result4.studentID}}</span></b></div>
+{{/if}}
+    </div>
+
+    <!--? FOOTER -->
+
+    <br />
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+#nohr hr{
+  margin: 0;padding: 0;
+}
+        header {
+            background-color:#EE7214;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container1 {
+            width: auto;
+            background-color: #fff;
+            padding: 20px;
+            {{!-- border-radius: 8px; --}}
+            {{!-- background-color: #83A2FF !important; --}}
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            {{!-- font-weight: bold; --}}
+        }
+        label >div {
+            
+            font-weight: bold;
+        }
+
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        center >img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-radius: 0px;
+background: #e0e0e0;
+box-shadow:  5px 5px 10px #bebebe,
+             -5px -5px 10px #ffffff;
+
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+  <body >
+ <header class="ani4">
+        <h1>Your Details</h1>
+    </header>
+    <br><br>
+
+
+  <center class="mob-flex"
+    style="display: flex; justify-content: center; width: 100% !important; overflow: scroll !important;">
+<div class="box m-90p" style="height: auto !important; width: auto; overflow: scroll !important; align-items: center !important; align-content: center !important;">
+    <canvas id="myChart4"></canvas>
+
+  </div>
+
+
+    <div class="box only-Mob" style="height: auto !important; width: 90%; overflow: scroll !important;">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div class="box m-displayNone" style="height: auto !important; width: 600px; overflow: scroll !important;">
+      <canvas id="myChart3"></canvas>
+
+    </div>
+
+
+
+    
+
+    
+  </center>
+
+
+<div id="nohr" style="justify-content: center ; z-index: 3 !important;" class="d-flex-computer ani1" >
+    <div class="container1 ani2" style="z-index: 5;">
+      <center>
+        
+           <img src="{{result4.img}}" class="ani3" width="200px" alt="">
+           <div>
+            <center class=" mt-2" style="font-weight: bold;">
+            {{result4.studentName}}
+            </center>
+            <hr>
+            <center class=" mt-2" style="font-weight: bold;">
+{{result4.school}} <br>
+            Student ID : <code> {{result4.studentID}}</code> <br>
+            
+
+            </center>
+            <hr>
+           </div>
+           </center>  
+    </div>
+    <div class="container1 ani4" style="overflow: scroll !important;">
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">Student Name</div>:&nbsp;  {{result4.studentName}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani3" for="studentName">
+          <div style="width: 130px !important;">UserName</div>:&nbsp;  {{result4.username}}
+          </label>
+
+<hr>
+        <label style="display: flex;" class="ani2" for="mobileNo">
+          <div style="width: 130px !important;">student Of</div>:&nbsp; {{result4.std}}
+          </label>
+
+<hr>
+          
+      
+
+          
+        <label style="display: flex;" class="ani4" for="mobileNo">
+          <div style="width: 130px !important;">Section</div>:&nbsp; {{result4.section}}
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="studentId">
+          <div style="width: 130px !important;">student ID</div>:&nbsp;<code> {{result4.studentID}}</code>
+          </label>
+<hr>
+        <label style="display: flex;"class="ani4" for="email">
+          <div style="width: 130px !important;">Email</div>:&nbsp; {{result4.email}}
+          </label>
+<hr>
+        <label style="display: flex;"class="ani5" for="dob">
+          <div style="width: 130px !important;">Date of Birth</div>:&nbsp; {{result4.dob}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="collegeName">
+          <div style="width: 130px !important;">College Name</div>:&nbsp; {{result4.schoolID}}
+          </label>
+<hr>
+        <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Mobile Number</div>:&nbsp;{{result4.contactNo}}
+          </label>
+
+<hr>
+          
+
+
+           <label style="display: flex;" class="ani5" for="mobileNo">
+          <div style="width: 130px !important;">Bitonic ID</div>:&nbsp; <code> {{result4.bitonicID}}</code>
+          </label>
+</div>
+
+</div>
+    
+
+
+
+
+
+{{>footer}}
+    <script>
+
+      function oo() { document.getElementById("loading").style.display="none"; }
+    </script>
+    
+  <script>
+
+    function oo() {
+      document.getElementById("loading").style.display = "none";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+
+const t=0;
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const fid = urlParams.get('studentID')
+console.log(fid)
+
+fetch("http://localhost/bitonicapi/studentAttendance.php?id="+fid)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data received:', data);
+    // console.log('Data received:', data);
+  
+
+
+
+
+
+
+
+    const ctx = document.getElementById('myChart');
+    const ctx3 = document.getElementById('myChart3');
+    const ctx4 = document.getElementById('myChart4');
+
+    
+const jan =  data['totalLec'][0]==undefined?0:data['totalLec'][0]['present'] ; 
+const feb =  data['totalLec'][1]==undefined?0:data['totalLec'][1]['present'] ; 
+const  mar = data['totalLec'][2]==undefined?0:data['totalLec'][2]['present'] ; 
+const  apr = data['totalLec'][3]==undefined?0:data['totalLec'][3]['present'] ; 
+const  may = data['totalLec'][4]==undefined?0:data['totalLec'][4]['present'] ; 
+const  jun = data['totalLec'][5]==undefined?0:data['totalLec'][5]['present'] ; 
+const jul =  data['totalLec'][6]==undefined?0:data['totalLec'][6]['present'] ; 
+const  aug = data['totalLec'][7]==undefined?0:data['totalLec'][7]['present'] ; 
+const  sep = data['totalLec'][8]==undefined?0:data['totalLec'][8]['present'] ; 
+const  oct = data['totalLec'][9]==undefined?0:data['totalLec'][9]['present'] ; 
+const  nov = data['totalLec'][10]==undefined?0:data['totalLec'][10]['present'] ; 
+const dec =  data['totalLec'][11]==undefined?0:data['totalLec'][11]['present'] ; 
+
+const totallec   =data['getLec'];
+const presentlec =data['totalPresent'];
+const absentlec  =data['totalAbsent'];
+
+const percent = (presentlec/totallec)*100;
+document.getElementById("percent").innerText=(presentlec/totallec)*100+"%";
+
+console.log(percent);
+if(percent>=60){
+document.getElementById("percent").style.color="green";
+
+}
+else{
+document.getElementById("percent").style.color="red";
+
+}
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+          label: ' Attendace 2023-2024',
+          data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
+          backgroundColor: ['rgb(255, 135, 5,0.3)'],
+          borderColor: ['rgb(255, 135, 5,1)'],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+        indexAxis: 'y',
+
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+        datasets: [{
+          label: 'student Attendace 2023-2024',
+                   data: [jun,jul,aug,sep,oct,nov,dec,jan,feb,mar,apr,may],
+
+          backgroundColor: ['rgb(255, 135, 5,0.3)'],
+          borderColor: ['rgb(255, 135, 5,1)'],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ["Total Lec","Present","Absent"],
+        datasets: [{
+          label: 'student Attendace 2023-2024',
+          data: [totallec,presentlec,absentlec],
+          backgroundColor: ['rgb(255, 135, 5,1)',
+          'rgb(0,224,0,1)','rgb(254, 0, 0,1)'],
+          borderColor: ['rgb(255, 135, 5,1)',
+          'rgb(0,224,0,1)','rgb(254, 0, 0,1)'
+          ],
+
+          borderWidth: 1,
+
+        }],
+
+      },
+      options: {
+            indexAxis: 'y',
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+  </script>
+  </body>
+</html>

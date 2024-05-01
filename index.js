@@ -279,21 +279,21 @@ app.get("/teacher/teacherHomepage", (req, res) => {
           console.log(result4);
           const graphData = [
             {
-              jun: 10,
-              jul: 20,
-              aug: 30,
-              sep: 40,
-              oct: 50,
-              nov: 60,
-              dec: 70,
-              jan: 80,
-              feb: 90,
-              mar: 100,
-              apr: 110,
-              may: 120,
-              totallec: 200,
-              presentlec: 120,
-              absentlec: 80,
+              jun: 0,
+              jul: 0,
+              aug: 0,
+              sep: 0,
+              oct: 0,
+              nov: 0,
+              dec: 0,
+              jan: 0,
+              feb: 0,
+              mar: 0,
+              apr: 0,
+              may: 0,
+              totallec: 0,
+              presentlec: 0,
+              absentlec: 0,
             },
           ];
 
@@ -344,7 +344,7 @@ app.get("/teacher/addAttendance", (req, res) => {
       console.log(result8);
 
       conn.query(
-        `select * from csd where tid='${req.cookies.teacherID}'`,
+        `select distinct standard , divi , subjectName from csd where tid='${req.cookies.teacherID}' group by standard, divi`,
         function (err43, res43, field43) {
           res.render("teacher/addAttendance", {
             teacherData: result8[0],
@@ -993,8 +993,7 @@ app.post("/insert/addTeacher", upload.single("avatar"), async (req, res) => {
 //? ===========================================================================================================
 // ! [ Insert Teachers ]
 app.post(
-  "/insert/addStudent",
-  upload2.single("studentImg"),
+  "/insert/addStudent",  upload2.single("studentImg"),
   async (req, res) => {
     console.log("============================");
 
@@ -1017,9 +1016,12 @@ app.post(
     console.log(pwdHash);
     const bitID = "bitonic@stu-" + uuid.v4();
     const adminID = req.cookies.adminID;
+const studentIDs  = bitID.substring(0,16); 
 
+  
     conn.query(
-      `INSERT INTO student (sid, bitonicID, studentName, pwd, username, email, contactNo, active, studentID, std, img, fees, section, schoolID, rollno, dob) VALUES (NULL, '${bitID}' , '${uname}', '${pwdHash}', '${username}', '${email}', '${mob}', '9', '${bitID.substring(0,16)}',  '${std}', 'img', '${"/studentsUploads/" + req.file.filename}', '${section}','${adminID}', '${rollno}', '${dob}');`,
+      `INSERT INTO student (sid, bitonicID, studentName, pwd, username, email, contactNo, active, studentID, std, img, fees, section, schoolID, rollno, dob) VALUES (NULL, '${bitID}' , '${uname}', '${pwdHash}', '${username}', '${email}', '${mob}', '0', '${studentIDs}',  '${std}', '${
+        "/studentsUploads/" + req.file.filename}', '${fees}', '${section}','${adminID}', '${rollno}', '${dob}');`,
       (err15, res15, field) => {
         if (err15) {
           res.json({
@@ -1062,7 +1064,7 @@ app.post("/admin/addSCD", (req, res) => {
       if (err42) {
         console.log(err42);
       } else {
-        res.render("admin/addSCD", { mess: "added" });
+        res.redirect("teachers");
       }
     }
   );
@@ -1072,16 +1074,15 @@ app.post("/admin/addSCD", (req, res) => {
 
 //! admin/deletequeue?queueID=cdf2649
 
-app.get("/admin/deletequeue", (req, res) => {
+app.get("/admin/deletestudent", (req, res) => {
   conn.query(
-    `delete  from queue where queueID='${req.query.queueID}'`,
+    `delete  from student where studentID='${req.query.studentID}'`,
     (err20, fields20) => {
       if (err20) throw err20;
       // res.send(`Deleting the student With Queue ID ${req.query.queueID}`);
     }
   );
-
-  res.redirect("/admin/requests");
+  res.redirect("/admin/students");
 });
 
 app.get("/admin/deleteTeacher", (req, res) => {
@@ -1090,7 +1091,7 @@ app.get("/admin/deleteTeacher", (req, res) => {
     `delete  from teacher where teacherID='${req.query.teacherID}'`,
     (err20, fields20) => {
       if (err20) {
-        console.log("NO accoud");
+        console.log("Teacher Deleted !");
       }
       // res.send(`Deleting the student With Queue ID ${req.query.queueID}`);
     }
@@ -1098,6 +1099,37 @@ app.get("/admin/deleteTeacher", (req, res) => {
 
   res.redirect("/admin/teachers");
 });
+
+
+app.get("/admin/getTeacher",(req,res)=>{
+  conn.query(
+    `select * from teacher where  workPlaceID='${req.cookies.schoolID}'  `,
+    function (err15, result15, field) {
+      if (err15) throw err15;
+
+      console.log(result15[0]);
+    
+      res.render("admin/getTeacher", {
+        result15: result15,
+       
+      });
+    }
+  );
+})
+
+app.get("/admin/viewStudent",(req,res)=>{
+  var studentid = req.query.studentID
+conn.query(`Select * from student where studentID='${studentid}'`,function(err,result,field){
+if(err){
+
+}
+else{
+  res.render("admin/viewStudent", {result4:result[0]})
+
+}
+})
+
+})
 
 //! ===========================================================================================================
 
